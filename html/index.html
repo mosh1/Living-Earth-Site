@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+	<title>Living Earth</title>
+	<link rel="stylesheet" href="css/style.css" type="text/css" media="screen" charset="utf-8" />
+	<link rel="stylesheet" href="css/fancybox.css" type="text/css" media="screen" charset="utf-8" />
+	
+	<script type="text/javascript" src="js/jquery-1.6.2.min.js"></script>
+	<script type="text/javascript" src="js/jquery.fancybox-1.3.4.pack.js"></script>
+	<script type="text/javascript">
+		$(document).ready(function() {
+		
+			var thumbnails = $('.thumbnail');
+			
+			thumbnails.each(function() {
+			
+				$(this).click(function(e) {
+					var i = $(this).index();
+
+					$('.screenshot').each(function() {
+						$(this).find('img:visible').fadeOut();
+						$(this).find('img').eq(i-1).fadeIn();
+					});
+				
+					$('#description').text($(this).attr('title'));
+					
+					e.preventDefault();
+				})
+				
+			});
+			
+			$("a[rel=additional]").fancybox({
+				'titlePosition'		: 'outside',
+				'overlayColor'		: '#000',
+				'overlayOpacity'	: 0.7
+			});
+			
+		});
+	</script>
+	<!--[if IE]>
+		<script type="text/javascript">
+			(function(){
+				var html5elmeents = "address|article|aside|audio|canvas|command|datalist|details|dialog|figure|figcaption|footer|header|hgroup|keygen|mark|meter|menu|nav|progress|ruby|section|time|video".split('|');
+				for(var i = 0; i < html5elmeents.length; i++) { document.createElement(html5elmeents[i]); }
+			})();
+		</script>
+	<![endif]-->
+
+</head>
+<body>
+
+	<header>
+		
+		<div class="container">
+		
+			<h1>Living Earth</h1>
+		
+			<div id="social">
+				<a class="facebook" href="#">Facebook</a>
+				<a class="twitter" href="#">Twitter</a>
+			</div>
+		
+			<a class="appstore" href="#">Available on the AppStore</a>
+		
+		</div>
+		
+	</header>
+	
+	<section class="gray-top">
+		
+		<div class="container">
+		
+			<div id="bezels">
+			
+				<div id="ipad">
+				
+					<div class="screenshot">
+						<img src="images/ipad1.png" alt="" />
+						<img src="images/ipad2.png" alt="" style="display:none" />
+						<img src="images/ipad3.png" alt="" style="display:none" />
+						<img src="images/ipad4.png" alt="" style="display:none" />
+						<img src="images/ipad5.png" alt="" style="display:none" />
+						<img src="images/ipad6.png" alt="" style="display:none" />
+					</div>
+				
+				</div>
+			
+				<div id="iphone">
+				
+					<div class="screenshot">
+						<img src="images/iphone1.png" alt="" />
+						<img src="images/iphone2.png" alt="" style="display:none" />
+						<img src="images/iphone3.png" alt="" style="display:none" />
+						<img src="images/iphone4.png" alt="" style="display:none" />
+						<img src="images/iphone5.png" alt="" style="display:none" />
+						<img src="images/iphone6.png" alt="" style="display:none" />
+					</div>
+				
+				</div>
+			
+			</div>
+		
+			<div id="thumbnails">
+				<p>
+					The absolute best and most beautiful World Clock, Weather and Alarm available 
+					for your iPhone and iPad! Enjoy a stunning live 3D simulation of our planet at 
+					our current moment in time with global weather, forecasts and world clock for 
+					cities around the world. 
+				</p>
+			
+				<a class="thumbnail" href="#" title="Title for 1"><img src="images/thumb1.png" alt="" /></a>
+				<a class="thumbnail" href="#" title="Another for 2"><img src="images/thumb2.png" alt="" /></a>
+				<a class="thumbnail nomargin" href="#" title="Custom long titles for 3"><img src="images/thumb3.png" alt="" /></a>
+				<a class="thumbnail" href="#" title="A little shorter for 4"><img src="images/thumb4.png" alt="" /></a>
+				<a class="thumbnail" href="#" title="Real short 5"><img src="images/thumb5.png" alt="" /></a>
+				<a class="thumbnail nomargin" href="#" title="And another really long title for 6"><img src="images/thumb6.png" alt="" /></a>
+			
+			</div>
+			
+			<br class="clear" />
+		
+			<div class="center">
+				
+				<div id="description">
+					Put something here for page load
+				</div>
+				
+			</div>
+		
+		</div>
+	</section>
+	
+	<section class="gray">
+		<div class="container">
+		
+			<blockquote id="apple">
+			
+				"Living Earth HD is proof that a world clock and weather app can be beautiful"
+				<span>&mdash; Apple
+			
+			</blockquote>
+		
+			<h2 id="features">Features &amp; Reviews</h2>
+		
+			<div class="column">
+			
+				<div class="feature">
+					<img src="images/globe.png" alt="" />
+					<p>The most elegant, simple and beautiful World Clock and Weather app for the iPhone and iPad. A beautiful live rendering of our planet.</p>
+				</div>
+			
+				<div class="feature">
+					<img src="images/cloud.png" alt="" />
+					<p>Clouds rendered with near real-time satellite cloud data (every 3 hours). View global cloud patterns, and tropical storms as they are happening.</p>
+				</div>
+				
+				<div class="feature">
+					<img src="images/bolt.png" alt="" />
+					<p>World clock, weather and four day forecast for over 22,000 cities around the world.</p>
+				</div>
+
+				<div class="feature">
+					<img src="images/eye.png" alt="" />
+					<p>Observe sunrise and sunset borders around the world live as they are happening. Watch the day and night shadow line progress across the globe through the day.</p>
+				</div>
+
+				<div class="feature">
+					<img src="images/key.png" alt="" />
+					<p>Auto-lock override feature. Keep the display on while docked for a nightstand or desktop clock.</p>
+				</div>
+			
+				<div class="feature">
+					<img src="images/check.png" alt="" />
+					<p>Enhanced for iPad 2.</p>
+				</div>
+			
+			</div>
+		
+			<div class="column gutter">
+			
+				<div class="feature">
+					<img src="images/clock.png" alt="" />
+					<p>Display Sunrise and Sunset times for each city.</p>
+				</div>
+				
+				<div class="feature">
+					<img src="images/line.png" alt="" />
+					<p>Rayleigh atmospheric scattering calculations for photorealistic atmospheric simulation.</p>
+				</div>
+				
+				<div class="feature">
+					<img src="images/arrow.png" alt="" />
+					<p>Observe the changing seasons throughout the year. View snow and ice coverage as well as other seasonal changes on our globe.</p>
+				</div>
+				
+				<div class="feature">
+					<img src="images/camera.png" alt="" />
+					<p>High resolution live 3D simulation. Especially optimized for the iPhone 4 retina display and iPad 2.</p>
+				</div>
+				
+				<div class="feature">
+					<img src="images/bell.png" alt="" />
+					<p>Alarm Clock with music playlist. Wake up to a stunning view of the planet with your favorite music!</p>
+				</div>
+				
+				<div class="feature">
+					<img src="images/gear.png" alt="" />
+					<p>Universal app, get both iPhone and iPad editions with one purchase.</p>
+				</div>
+
+				<div class="feature">
+					<img src="images/star.png" alt="" />
+					<p>The absolute best and most beautiful World Clock, Weather and Alarm on the iPhone and iPad!</p>
+				</div>
+				
+			</div>
+		
+			<div class="column">
+			
+				<div class="review">
+					<p>
+						"Easily the best world clock app I've ever used. The images are crisp and just beautiful."
+					</p>
+					<img src="images/stars.png" alt="" />
+				</div>
+			
+				<div class="review">
+					<p>
+						"Easily the best world clock app I've ever used. The images are crisp and just beautiful."
+					</p>
+					<img src="images/stars.png" alt="" />
+				</div>
+			
+				<div class="review">
+					<p>
+						"Easily the best world clock app I've ever used. The images are crisp and just beautiful."
+					</p>
+					<img src="images/stars.png" alt="" />
+				</div>
+			
+				<a id="appstore" href="#">Available on the AppStore</a>
+			</div>
+			
+			<br class="clear" />
+		
+			<h2 id="screenshots">Additional Screenshots</h2>
+			
+			<div class="additional">
+			
+				<a href="images/ipad1.png" rel="additional" title="another title here"><img src="images/ipad1.png" alt="" /></a>
+				<a href="images/ipad2.png" rel="additional"><img src="images/ipad2.png" alt="" /></a>
+				
+				<a href="images/iphone1.png" rel="additional"><img src="images/iphone1.png" alt="" /></a>
+				<a href="images/iphone2.png" rel="additional"><img src="images/iphone2.png" alt="" /></a>
+				<a href="images/iphone3.png" rel="additional"><img src="images/iphone3.png" alt="" /></a>
+				<a href="images/iphone4.png" rel="additional"><img src="images/iphone4.png" alt="" /></a>
+			
+			</div>
+		
+		</div>
+
+
+		<footer>
+			&copy; 2011 Living Earth App. All Rights Reserved.
+		</footer>
+
+		
+	</section>
+
+</body>
+</html>
