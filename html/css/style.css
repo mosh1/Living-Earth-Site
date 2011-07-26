@@ -24,7 +24,7 @@ input,select{vertical-align:middle;}
 
 /*------------------ @Body ------------------*/
 body {
-	background: #000 url(../images/earth.jpg) no-repeat center 160px fixed;
+	background: #000 url(../images/earth.jpg) no-repeat center 150px fixed;
 	color: #fff;
 	font: normal 14px/18px "Myriad Pro", "Lucida Grande", Helvetica, Arial;
 }
@@ -40,8 +40,8 @@ body {
 
 header {
 	position: relative;
-	padding-top: 40px;
-	height: 220px;
+	padding-top: 30px;
+	height: 290px;
 }
 
 	header .container {
@@ -63,7 +63,7 @@ header {
 		}
 
 header h1 {
-	width: 414px;
+	width: 575px;
 	height: 96px;
 	background: url(../images/logo.png) no-repeat 0 0;
 	display: block;
