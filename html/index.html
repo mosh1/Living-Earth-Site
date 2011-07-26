@@ -23,8 +23,11 @@
 						$(this).find('img').eq(i-1).fadeIn();
 					});
 				
-					$('#description').text($(this).attr('title'));
-					
+					if ($(this).attr('title') == '') {
+						$('#description').remove();
+					} else {
+						$('#description').text($(this).attr('title'));
+					}
 					e.preventDefault();
 				})
 				
@@ -61,7 +64,7 @@
 				<a class="twitter" href="https://twitter.com/#!/livingearthhd/">Twitter</a>
 			</div>
 		
-			<a class="appstore" href="http://bit.ly/LEarthSite">Available on the AppStore</a>
+			<a class="appstore" href="http://click.linksynergy.com/fs-bin/stat?id=YUiZrSTCO*w&offerid=146261&type=3&subid=0&tmpid=1826&RD_PARM1=http%253A%252F%252Fitunes.apple.com%252Fus%252Fapp%252Fliving-earth-hd-world-clock%252Fid379869627%253Fmt%253D8%2526uo%253D4%2526partnerId%253D30&u1=sharing">Available on the AppStore</a>
 		
 		</div>
 		
@@ -109,8 +112,8 @@
 					cities around the world. 
 				</p>
 			
-				<a class="thumbnail" href="#" title=""><img src="images/thumb1.jpg" alt="" /></a>
-				<a class="thumbnail" href="#" title="Stunning 3D Earth with Live Clouds"><img src="images/thumb2.jpg" alt="" /></a>
+				<a class="thumbnail" href="#" title="World Clock, Weather, and Stunning Live 3D Earth"><img src="images/thumb1.jpg" alt="" /></a>
+				<a class="thumbnail" href="#" title="View world cloud patterns and tropical Storms"><img src="images/thumb2.jpg" alt="" /></a>
 				<a class="thumbnail nomargin" href="#" title="World Clock - 22,000+ Locations"><img src="images/thumb3.jpg" alt="" /></a>
 				<a class="thumbnail" href="#" title="Forecasts and weather conditions"><img src="images/thumb4.jpg" alt="" /></a>
 				<a class="thumbnail" href="#" title="Wake up to the stunning view with your favorite music"><img src="images/thumb5.jpg" alt="" /></a>
@@ -121,9 +124,9 @@
 			<br class="clear" />
 		
 			<div class="center">
-				
+
 				<div id="description">
-					Put something here for page load
+					World Clock, Weather, and Stunning Live 3D Earth
 				</div>
 				
 			</div>
@@ -227,19 +230,19 @@
 			
 				<div class="review">
 					<p>
-						"Easily the best world clock app I've ever used. The images are crisp and just beautiful."
+						"Gorgeous. Magical. Reminds you where you are on this planet. Literally stunning."
 					</p>
 					<img src="images/stars.png" alt="" />
 				</div>
 			
 				<div class="review">
 					<p>
-						"Easily the best world clock app I've ever used. The images are crisp and just beautiful."
+						"This is just one of those apps you marvel at because it has so many tiny tightly integrated features and is beautifully executed as a complete entity. Well done!"
 					</p>
 					<img src="images/stars.png" alt="" />
 				</div>
 			
-				<a id="appstore" href="http://bit.ly/LEarthSite">Available on the AppStore</a>
+				<a id="appstore" href="http://click.linksynergy.com/fs-bin/stat?id=YUiZrSTCO*w&offerid=146261&type=3&subid=0&tmpid=1826&RD_PARM1=http%253A%252F%252Fitunes.apple.com%252Fus%252Fapp%252Fliving-earth-hd-world-clock%252Fid379869627%253Fmt%253D8%2526uo%253D4%2526partnerId%253D30&u1=sharing">Available on the AppStore</a>
 			</div>
 			
 			<br class="clear" />
