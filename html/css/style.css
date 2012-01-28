@@ -293,7 +293,7 @@ h2#features {
 		-moz-box-shadow: inset 0 1px 3px #000;
 		background: rgba(0,0,0,.20);
 		color: #d5d5d5;
-		font-style: italic;
+		/* font-style: italic; */
 		padding: 25px 10px 15px 10px;
 		margin-bottom: 10px;
 	}
