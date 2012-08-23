@@ -407,19 +407,22 @@ margin: 0px 0px 20px 20px;
 	-moz-border-radius: 6px;	
 }
 
-
-
-#mac-support footer { 
-	padding: 40px 0px 30px;
-}
-
 #mac-support { 
-	background-position: center 60px;
+	background-position: center 90px;
 }
 
 #mac-support #title { 
 	text-align: center;
-	padding: 60px 0px;
+	padding: 30px 0px 100px;
+}
+
+#mac-support #title h1 { 
+	display: block;
+	width: 279px;
+	height: 52px;
+	background: url(../images/mac/logo.png) no-repeat 0 0;
+	text-indent: -9999em;
+	margin: auto;
 }
 
 #mac-support #content { 
@@ -437,3 +440,6 @@ margin: 0px 0px 20px 20px;
 	clear: both;
 }
 
+#mac-support footer { 
+	padding: 40px 0px 30px;
+}
