@@ -407,6 +407,22 @@ margin: 0px 0px 20px 20px;
 	-moz-border-radius: 6px;	
 }
 
+#mac-support aside.inline
+{ 
+	float: left !important;
+	margin: 0px 0px 20px 0px;
+}
+
+#mac-support aside.inline + *
+{ 
+	clear: both;
+}
+
+#mac-support aside.inline img
+{
+	display: inline; 
+}
+
 #mac-support { 
 	background-position: center 90px;
 }
@@ -438,6 +454,35 @@ margin: 0px 0px 20px 20px;
 	border-top: 1px solid #333;
 	padding-top: 15px;
 	clear: both;
+}
+
+#mac-support .topic section { 
+	clear: both;
+	margin-top: 30px;
+}
+
+#mac-support .topic li
+{ 
+	font-size: 15px;
+	margin: 0px 0px 4px;
+}
+
+#mac-support .toc
+{ 
+	padding: 20px 0px 10px;
+	margin: 40px 0px 0px;
+	border-top: 1px solid #333;
+}
+
+#mac-support .toc dt
+{
+	font-size: 16px; 
+	margin: 0px 0px 8px;
+}
+
+#mac-support .toc li
+{
+	 margin: 0px 0px 3px;
 }
 
 #mac-support footer { 
