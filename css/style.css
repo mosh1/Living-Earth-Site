@@ -28,6 +28,7 @@ input,select{vertical-align:middle;}
 /*------------------ @Body ------------------*/
 body {
 	background: #000 url(../images/earth.jpg) no-repeat center 150px fixed;
+	background-size: 763px 425px;
 	color: #fff;
 	font: normal 14px/18px "Myriad Pro", "Lucida Grande", Helvetica, Arial;
 }
@@ -142,6 +143,14 @@ section.gray {
 			width: 317px;
 			height: 422px;
 		}
+		
+		#ipad .screenshot img {
+			width: 317px;
+			height: 422px;
+			position: absolute;
+			top: 0;
+			left: 0;
+		}
 
 	#iphone {
 		position: absolute;
@@ -159,16 +168,18 @@ section.gray {
 			height: 245px;
 		}
 		
-		.screenshot {
-			background: #000;
-			position: relative;
-		}
-		
-			.screenshot img {
+		#iphone .screenshot img {
+				width: 163px;
+				height: 244px;
 				position: absolute;
 				top: 0;
 				left: 0;
 			}
+		
+		.screenshot {
+			background: #000;
+			position: relative;
+		}
 		
 	#description {
 		clear: both;
@@ -344,12 +355,24 @@ h2#screenshots {
 			padding: 5px;
 		}
 		
-			.additional a img {
+			.additional .ipad a img {
+				width: 390px;
+				height: 293px;
 				border-radius: 5px;
 				-webkit-border-radius: 5px;
 				-moz-border-radius: 5px;
 				display: block;	
 			}
+			
+			.additional .iphone a img {
+				width: 390px;
+				height: 260px;
+				border-radius: 5px;
+				-webkit-border-radius: 5px;
+				-moz-border-radius: 5px;
+				display: block;	
+			}
+			
 
 	
 footer {
