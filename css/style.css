@@ -262,6 +262,7 @@ blockquote#apple {
 		display: block;
 		font-size: 14px;
 		color: #a7a7a7;
+		padding-top: 5px;
 	}
 	
 /*-------------- @Features & Reviews ---------------*/
