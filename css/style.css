@@ -69,7 +69,8 @@ header {
 header h1 {
 	width: 575px;
 	height: 96px;
-	background: url(../images/logo.png) no-repeat 0 0;
+	background: url(../images/logo.png) no-repeat center;
+	background-size: 525px 61px;
 	display: block;
 	text-indent: -9999px;
 	margin: 0 auto;
