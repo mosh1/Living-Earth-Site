@@ -391,7 +391,7 @@ a.thumbnail:hover, .additional a:hover {background:none repeat scroll 0 0 rgba(0
 #mac-support h1,
 #mac-support h2, 
 #mac-support h3,
-#mac-support h4 { color: #8ac5fe; text-transform: capitalize; }
+#mac-support h4 { color: #8ac5fe; }
 
 #mac-support a { color: #ffd059; }
 #mac-support strong { color: #ffd059; }
@@ -460,7 +460,7 @@ margin: 0px 0px 20px 20px;
 #mac-support #title h1 { 
 	display: block;
 	width: 377px;
-	height: 70px;
+	height: 120px;
 	background: url(../images/mac/logo.png) no-repeat 0 0;
 	text-indent: -9999em;
 	margin: auto;
