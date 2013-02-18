@@ -1,0 +1,515 @@
+
+
+
+/*------------------ @Reset ------------------*/
+html,body,div,span,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,abbr,address,cite,code,del,dfn,em,img,ins,kbd,q,samp,
+small,strong,sub,sup,var,b,i,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td,
+article,aside,canvas,details,figcaption,figure,footer,header,hgroup,menu,nav,section,summary,time,mark,audio,
+video{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent;}
+body{line-height:1;}
+article,aside,details,figcaption,figure,
+footer,header,hgroup,menu,nav,section{display:block;}
+nav ul{list-style:none;}
+blockquote,q{quotes:none;}
+blockquote:before,blockquote:after,
+q:before,q:after{content:'';content:none;}
+a{margin:0;padding:0;font-size:100%;vertical-align:baseline;background:transparent;}
+/* change colours to suit your needs */
+ins{background-color:#ff9;color:#000;text-decoration:none;}
+/* change colours to suit your needs */
+mark{background-color:#ff9;color:#000;font-style:italic;font-weight:bold;}
+del{text-decoration:line-through;}
+abbr[title],dfn[title]{border-bottom:1px dotted;cursor:help;}
+table{border-collapse:collapse;border-spacing:0;}
+/* change border colour to suit your needs */
+hr{display:block;height:1px;border:0;border-top:1px solid #cccccc;margin:1em 0;padding:0;}
+input,select{vertical-align:middle;}
+
+/*------------------ @Body ------------------*/
+body {
+	background: #000 url(../images/earth.jpg) no-repeat center 150px fixed;
+	background-size: 763px 425px;
+	color: #fff;
+	font: normal 14px/18px "Myriad Pro", "Lucida Grande", Helvetica, Arial;
+}
+
+.clear {
+	clear: both;
+}
+
+.container {
+	width: 900px;
+	margin: 0 auto;
+}
+
+header {
+	position: relative;
+	padding-top: 30px;
+	height: 290px;
+}
+
+	header .container {
+		position: relative;
+	}
+	
+		header .container #social {
+			position: absolute;
+			left: 0;
+			top: 0;
+		}
+		
+		header .container .appstore {
+			position: absolute;
+			right: 0;
+			top: 0;
+			margin-right: -20px;
+			margin-top: -10px;
+		}
+
+header h1 {
+	width: 575px;
+	height: 96px;
+	background: url(../images/logo.png) no-repeat center;
+	background-size: 525px 61px;
+	display: block;
+	text-indent: -9999px;
+	margin: 0 auto;
+}
+
+header .appstore {
+	width: 206px;
+	height: 117px;
+	display: block;
+	text-indent: -9999px;
+	background: url(../images/appstore-glow.png) no-repeat 0 0;
+}
+
+	#social a {
+		float: left;
+		margin-left: -20px;
+	}
+	
+		#social a.twitter {
+			margin-left: -30px;
+		}
+
+.facebook {
+	width: 97px;
+	height: 97px;
+	background: url(../images/facebook.png) no-repeat 0 0;
+	text-indent: -9999px;
+	display: block;
+}
+
+.twitter {
+	width: 97px;
+	height: 97px;
+	background: url(../images/twitter.png) no-repeat 0 0;
+	text-indent: -9999px;
+	display: block;
+}
+
+section.gray-top {
+	background: url(../images/gray-top.png) repeat-x 0 80px;
+	clear: both;
+}
+
+section.gray {
+	background: url(../images/gray.png) repeat 0 0;
+	clear: both;
+	padding-bottom: 60px;
+}
+
+/*-------------- @Bezels ---------------*/
+
+	#bezels {
+		position: relative;
+		float: left;
+		width: 550px;
+		height: 571px;
+	}
+	
+	#ipad {
+		position: absolute;
+		left: 0;
+		top: 0;
+		width: 358px;
+		height: 520px;
+		padding-left: 41px;
+		padding-top: 48px;
+		background: url(../images/ipad.png) no-repeat 0 0;
+	}
+
+		#ipad .screenshot {
+			width: 317px;
+			height: 422px;
+		}
+		
+		#ipad .screenshot img {
+			width: 317px;
+			height: 422px;
+			position: absolute;
+			top: 0;
+			left: 0;
+		}
+
+	#iphone {
+		position: absolute;
+		right: 40px;
+		bottom: 0;
+		width: 179px;
+		height: 346px;
+		padding-left: 18px;
+		padding-top: 68px;
+		background: url(../images/iphone.png) no-repeat 0 0;
+	}
+
+		#iphone .screenshot {
+			width: 163px;
+			height: 245px;
+		}
+		
+		#iphone .screenshot img {
+				width: 163px;
+				height: 244px;
+				position: absolute;
+				top: 0;
+				left: 0;
+			}
+		
+		.screenshot {
+			background: #000;
+			position: relative;
+		}
+		
+	#description {
+		clear: both;
+		text-align: center;
+		padding: 7px 60px;
+		display: inline-block;
+		margin: 0 auto;
+		background: rgba(0,0,0,.20);
+		border-radius: 30px;
+		-webkit-border-radius: 30px;
+		-moz-border-radius: 30px;
+		box-shadow: inset 0 1px 3px #000;
+		-webkit-box-shadow: inset 0 1px 3px #000;
+		-moz-box-shadow: inset 0 1px 3px #000;
+	}
+	
+	.center { text-align: center; }
+	
+	.hide {
+		display: none;
+	}
+
+		
+/*-------------- @thumbnails ---------------*/
+#thumbnails {
+	float: left;
+	width: 350px;
+	padding-top: 150px;
+}
+
+	#thumbnails p {
+		padding-bottom: 30px;
+	}
+	
+	.thumbnail {
+		margin-right: 10px;
+		margin-bottom: 10px;
+		float: left;
+		display: block;
+		width: 100px;
+		height: 100px;
+		padding: 5px;
+		border-radius: 10px;
+		-webkit-border-radius: 10px;
+		-moz-border-radius: 10px;
+		box-shadow: inset 0 1px 3px #000;
+		-webkit-box-shadow: inset 0 1px 3px #000;
+		-moz-box-shadow: inset 0 1px 3px #000;
+		background: rgba(0,0,0,.20);
+		text-align: center;
+	}
+	
+		.thumbnail img {
+			border: 0;
+			border-radius: 5px;
+			-webkit-border-radius: 5px;
+			-moz-border-radius: 5px;
+			width: 100px;
+			height: 100px;
+		}
+	
+	.nomargin {
+		margin-right: 0;
+	}
+
+/*-------------- @Apple Quote ---------------*/
+blockquote#apple {
+	width: 896px;
+	height: 93px;
+	margin: 0 auto;
+	background: url(../images/apple.png) no-repeat 0 0;
+	font-size: 18px;
+	text-align: center;
+	font-style: italic;
+	padding-top: 70px;
+}
+
+	blockquote#apple span {
+		display: block;
+		font-size: 14px;
+		color: #a7a7a7;
+		padding-top: 6px;
+	}
+	
+/*-------------- @Features & Reviews ---------------*/
+h2#features {
+	background: url(../images/features.png) no-repeat 0 0;
+	width: 900px;
+	height: 29px;
+	display: block;
+	text-indent: -9999px;
+	margin-top: 30px;
+	margin-bottom: 50px;
+}
+
+.column {
+	width: 280px;
+	float: left;
+}
+
+	.gutter {
+		padding: 0 30px;
+	}
+
+	.feature {
+		clear: both;
+	}
+	
+		.feature img {
+			float: left;
+		}
+		
+		.feature p {
+			padding-left: 40px;
+			color: #d3d3d3;
+			padding-bottom: 15px;
+		}
+		
+	.review {
+		text-align: center;
+		border-radius: 10px;
+		-webkit-border-radius: 10px;
+		-moz-border-radius: 10px;
+		box-shadow: inset 0 1px 3px #000;
+		-webkit-box-shadow: inset 0 1px 3px #000;
+		-moz-box-shadow: inset 0 1px 3px #000;
+		background: rgba(0,0,0,.20);
+		color: #d5d5d5;
+		/* font-style: italic; */
+		padding: 25px 10px 15px 10px;
+		margin-bottom: 10px;
+	}
+	
+		.review p {
+			padding-bottom: 10px;
+		}
+		
+	#appstore {
+		width: 280px;
+		height: 97px;
+		background: url(../images/appstore.png) no-repeat 0 0;
+		text-indent: -9999px;
+		display: block;
+		margin-top: 30px;
+	}
+	
+/*-------------- @additional screenshots ---------------*/
+h2#screenshots {
+	background: url(../images/screenshots.png) no-repeat 0 0;
+	width: 900px;
+	height: 29px;
+	display: block;
+	text-indent: -9999px;
+	margin-top: 50px;
+	margin-bottom: 50px;
+}
+
+	.additional {
+		text-align: center;
+		padding-right: 30px;
+	}
+	
+		.additional a {
+			display: inline-block;
+			margin-left: 30px;
+			margin-bottom: 30px;
+			border-radius: 10px;
+			-webkit-border-radius: 10px;
+			-moz-border-radius: 10px;
+			box-shadow: inset 0 1px 3px #000;
+			-webkit-box-shadow: inset 0 1px 3px #000;
+			-moz-box-shadow: inset 0 1px 3px #000;
+			background: rgba(0,0,0,.20);
+			padding: 5px;
+		}
+		
+			.additional .ipad a img {
+				width: 390px;
+				height: 293px;
+				border-radius: 5px;
+				-webkit-border-radius: 5px;
+				-moz-border-radius: 5px;
+				display: block;	
+			}
+			
+			.additional .iphone a img {
+				width: 390px;
+				height: 260px;
+				border-radius: 5px;
+				-webkit-border-radius: 5px;
+				-moz-border-radius: 5px;
+				display: block;	
+			}
+			
+
+	
+footer {
+	text-align: center;
+	padding-top: 60px;
+}
+
+a.thumbnail:hover, .additional a:hover {background:none repeat scroll 0 0 rgba(0, 0, 0, 1);}
+
+
+
+/*------------------ @Desktop Support ------------------*/
+
+#mac-support h1,
+#mac-support h2, 
+#mac-support h3,
+#mac-support h4 { color: #8ac5fe; }
+
+#mac-support a { color: #ffd059; }
+#mac-support strong { color: #ffd059; }
+
+#mac-support h1 { font-size: 32px; margin: 0em 0em 1em; }
+#mac-support h2 { font-size: 24px; margin: 0em 0em 1em; }
+#mac-support h3 { font-size: 24px; margin: 0em 0em 1.3em; }
+#mac-support h4 { font-size: 18px; margin: 0em 0em .5em; }
+#mac-support p { font-size: 16px; line-height: 22px; margin: 0px 0px 18px; }
+
+#mac-support ul { 
+margin: 0px 0px 20px 20px;
+}
+
+#mac-support aside.image { 
+	background-color: #111;
+	float: right;
+	padding: 5px;
+	margin: 0px 0px 30px 30px;
+	
+	border-radius: 10px;
+	-webkit-border-radius: 10px;
+	-moz-border-radius: 10px;
+	
+	box-shadow: 3px 3px 4px rgba(0, 0, 0, 0.2);
+	-webkit-box-shadow: 3px 3px 4px rgba(0, 0, 0, 0.2);
+	-moz-box-shadow: 3px 3px 4px rgba(0, 0, 0, 0.2);
+	
+}
+
+#mac-support aside.image img { 
+	padding: 0px;
+	margin: 0px;
+	display: block;
+	
+	border-radius: 6px;
+	-webkit-border-radius: 6px;
+	-moz-border-radius: 6px;	
+}
+
+#mac-support aside.inline
+{ 
+	float: left !important;
+	margin: 0px 0px 20px 0px;
+}
+
+#mac-support aside.inline + *
+{ 
+	clear: both;
+}
+
+#mac-support aside.inline img
+{
+	display: inline; 
+}
+
+#mac-support { 
+	background-position: center 90px;
+}
+
+#mac-support #title { 
+	text-align: center;
+	padding: 30px 0px 100px;
+}
+
+#mac-support #title h1 { 
+	display: block;
+	width: 377px;
+	height: 120px;
+	background: url(../images/mac/logo.png) no-repeat 0 0;
+	text-indent: -9999em;
+	margin: auto;
+}
+
+#mac-support #content { 
+	padding: 60px 0px 0px;
+}
+
+#mac-support .container { 
+	width: 800px;
+}
+
+#mac-support .topic { 
+	margin: 30px 0px;
+	border-top: 1px solid #333;
+	padding-top: 15px;
+	clear: both;
+}
+
+#mac-support .topic section { 
+	clear: both;
+	margin-top: 30px;
+}
+
+#mac-support .topic li
+{ 
+	font-size: 15px;
+	margin: 0px 0px 4px;
+}
+
+#mac-support .toc
+{ 
+	padding: 20px 0px 10px;
+	margin: 40px 0px 0px;
+	border-top: 1px solid #333;
+}
+
+#mac-support .toc dt
+{
+	font-size: 16px; 
+	margin: 0px 0px 8px;
+}
+
+#mac-support .toc li
+{
+	 margin: 0px 0px 3px;
+}
+
+#mac-support footer { 
+	padding: 40px 0px 30px;
+}
