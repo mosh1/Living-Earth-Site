@@ -1,0 +1,27 @@
+body { margin: 0; padding: 0; background-color: #131417; }
+
+#thanks { height: 20px; background-color: #131417; padding: 25px 0px; }
+#thanks h3 { margin: 0px auto; width: 441px; height: 25px; background-image: url(../images/thanks/thanks.png); }
+
+#header { margin-bottom: 80px; background: url(../images/thanks/background-repeat.png) repeat-x; }
+
+
+
+#ad { padding: 30px 0px; margin: 1px 0px; height: 704px; background: url(../images/thanks/background.jpg) no-repeat center center;}
+#ad h1 { margin: 0px auto; }
+#ad #logo { margin-bottom: 0; display: block; width: 369px; height: 77px; background-image: url(../images/thanks/logo.png);}
+#ad #mac { margin: -10px auto 0px; display: block; width: 614px; height: 356px; background-image: url(../images/thanks/laptop.png);}
+#ad #award { margin-top: -15px; width: 358px; height: 81px; background-image: url(../images/thanks/award.png);}
+#ad ul { margin: 50px auto 30px; padding: 0; width: 620px; height: 42px;}
+#ad li { list-style: none; margin: 0 auto; float: left; }
+#ad #best { width: 300px; height: 40px; background-image: url(../images/thanks/acc-best.png); margin-right: 70px;}
+#ad #editor { width: 243px; height: 42px; background-image: url(../images/thanks/acc-editors.png);}
+
+#store { margin-top: 30px; clear: left; }
+#store h3 { margin: 0px auto; width: 209px; height: 51px; background-image: url(../images/thanks/app-store.png); }
+#store strong { display: block; margin: 15px auto 0px; width: 304px; height: 21px; background-image: url(../images/thanks/top-paid.png); }
+
+#footer { width: 900px; margin: 0 auto; padding-bottom: 20px;}
+#footer p { font-family: "Arial", sans-serif; text-align: center; font-size: 14px; color: #555; } 
+
+.img { display: block; text-indent: -9999em; }
