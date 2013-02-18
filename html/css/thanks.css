@@ -18,7 +18,10 @@ body { margin: 0; padding: 0; background-color: #131417; }
 #ad #editor { width: 243px; height: 42px; background-image: url(../images/thanks/acc-editors.png);}
 
 #store { margin-top: 30px; clear: left; }
-#store a { margin: 0px auto; width: 209px; height: 51px; background-image: url(../images/thanks/app-store.png); }
+#store h3 { margin: 0px auto; width: 209px; height: 51px; background-image: url(../images/thanks/app-store.png); }
 #store strong { display: block; margin: 15px auto 0px; width: 304px; height: 21px; background-image: url(../images/thanks/top-paid.png); }
+
+#footer { width: 900px; margin: 0 auto; padding-bottom: 20px;}
+#footer p { font-family: "Arial", sans-serif; text-align: center; font-size: 14px; color: #555; } 
 
 .img { display: block; text-indent: -9999em; }
