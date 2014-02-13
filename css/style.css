@@ -463,6 +463,7 @@ margin: 0px 0px 20px 20px;
 	width: 377px;
 	height: 120px;
 	background: url(../images/mac/logo.png) no-repeat 0 0;
+	background-size: 377px 70px;
 	text-indent: -9999em;
 	margin: auto;
 }
