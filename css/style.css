@@ -133,47 +133,53 @@ section.gray {
 	
 	#ipad {
 		position: absolute;
-		left: 0;
-		top: 0;
-		width: 358px;
-		height: 520px;
-		padding-left: 41px;
-		padding-top: 48px;
+		left: 0px;
+		top: 0px;
+		width: 371px;
+		height: 570px;
+		padding-left: 22px;
+		padding-top: 46px;
 		background: url(../images/ipad.png) no-repeat 0 0;
+		background-size: 371px 570px;
+
 	}
 
 		#ipad .screenshot {
-			width: 317px;
-			height: 422px;
+			width: 327px;
+			height: 434px;
 		}
 		
 		#ipad .screenshot img {
 			width: 317px;
-			height: 422px;
+			height: 424px;
 			position: absolute;
-			top: 0;
-			left: 0;
+			top: 0px;
+			left: 0px;
 		}
 
 	#iphone {
 		position: absolute;
-		right: 40px;
-		bottom: 0;
-		width: 179px;
-		height: 346px;
-		padding-left: 18px;
-		padding-top: 68px;
+		right: 0px;
+		top: 180px;
+		width: 180px;
+		height: 418px;
+		padding-left: 40px;
+		padding-bottom: 0px;
 		background: url(../images/iphone.png) no-repeat 0 0;
+		background-size: 180px 396px;
 	}
 
 		#iphone .screenshot {
-			width: 163px;
-			height: 245px;
+			position: relative;
+			right: 29px;
+			top: 44px;
+			width: 158px;
+			height: 279px;
 		}
 		
 		#iphone .screenshot img {
-				width: 163px;
-				height: 244px;
+				width: 158px;
+				height: 279px;
 				position: absolute;
 				top: 0;
 				left: 0;
