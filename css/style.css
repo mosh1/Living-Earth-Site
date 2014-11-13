@@ -355,6 +355,7 @@ h2#screenshots {
 	background: url(../images/screenshots.png) no-repeat 0 0;
 	width: 900px;
 	height: 29px;
+	background-size: 900px 29px;
 	display: block;
 	text-indent: -9999px;
 	margin-top: 50px;
