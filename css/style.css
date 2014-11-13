@@ -336,13 +336,15 @@ h2#features {
 		}
 		
 	#appstore {
-		width: 280px;
-		height: 83px;
+	    margin-left: auto;
+    	margin-right: auto;
+		width: 200px;
+		height: 59px;
 		background: url(../images/appstore.png) no-repeat 0 0;
-		background-size: 280px 83px;
+		background-size: 200px 59px;
 		text-indent: -9999px;
 		display: block;
-		margin-top: 20px;
+		margin-top: 0px;
 	}
 	
 /*-------------- @additional screenshots ---------------*/
@@ -397,7 +399,7 @@ h2#screenshots {
 	
 footer {
 	text-align: center;
-	padding-top: 60px;
+	padding-top: 40px;
 }
 
 a.thumbnail:hover, .additional a:hover {background:none repeat scroll 0 0 rgba(0, 0, 0, 1);}
