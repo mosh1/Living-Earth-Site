@@ -300,15 +300,18 @@ h2#features {
 		.feature i {
 			float: left;
 			padding-top: 3px;
-			font-size: 24px;
+			font-size: 25px;
 		}
 	
 		.feature img {
 			float: left;
+			width: 30px;
+			height: 30px;
+			background-size: 30px 30px;
 		}
 		
 		.feature p {
-			padding-left: 40px;
+			padding-left: 42px;
 			color: #d3d3d3;
 			padding-bottom: 15px;
 		}
