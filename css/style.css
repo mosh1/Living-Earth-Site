@@ -27,8 +27,10 @@ input,select{vertical-align:middle;}
 
 /*------------------ @Body ------------------*/
 body {
-	background: #000 url(../images/earth.jpg) no-repeat center 170px fixed;
-	background-size: 763px 425px;
+/*	background: #000 url(../images/earth.jpg) no-repeat center 170px fixed;
+	background-size: 763px 425px;*/
+	background: #000 url(../images/EarthWithStars.jpg) no-repeat center 0px fixed;
+	background-size: 1536px 768px;
 	color: #fff;
 	font: normal 15px/19px "Myriad Pro", "Lucida Grande", Helvetica, Arial;
 }
