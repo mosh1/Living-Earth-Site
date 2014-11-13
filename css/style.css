@@ -32,7 +32,7 @@ body {
 	background: #000 url(../images/EarthWithStars.jpg) no-repeat center 0px fixed;
 	background-size: 1536px 768px;
 	color: #fff;
-	font: normal 15px/19px "Myriad Pro", "Lucida Grande", Helvetica, Arial;
+	font: normal 15px/19px "Myriad Pro", "Open Sans", Helvetica, Arial;
 }
 
 .clear {
@@ -404,7 +404,7 @@ footer {
 	padding-top: 40px;
 }
 
-a.thumbnail:hover, .additional a:hover {background:none repeat scroll 0 0 rgba(70, 70, 70, 1);}
+a.thumbnail:hover, .additional a:hover {background:none repeat scroll 0 0 rgba(0, 0, 0, 1);}
 
 
 
