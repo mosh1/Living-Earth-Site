@@ -1,0 +1,41 @@
+{
+    "version": 6,
+    "FAQ": [
+        {
+            "q": "Why are there white lines or white sections on certain areas of the Earth?",
+            "a": "Occasionally our satellite cloud images have errors and that can happen. It generally gets resolved in the next cloud data update in a few hours."
+        },        
+        {
+            "q": "Why does temperature badge feature not update the current temperature on my app icon?",
+            "a": "Try disabling then enable the temperature badge feature in the app Settings."
+        },
+        {
+            "q": "What does the red number badge on my app icon represent?",
+            "a": "That's the temperature badge feature. It represents the current temperature for your location. To disable this feature go into the Temperature Badge section in Living Earth Settings."
+        },
+        {
+            "q": "Why does the temperature badge show a positive number for temperatures below zero?",
+            "a": "It's currently not possible in iOS to display negative numbers on the icon badge or change its color. You can have the app send you a notification when the temperature reaches below zero so you'll know to read the icon badge as a negative temperature. Enable this in the Temperature Badge section of Living Earth's Settings."
+        },
+        {
+            "q": "Why aren't my cities being synced across my devices?",
+            "a": "Make sure you have the Sync Cities option enabled in the Edit Cities section of Living Earth's Settings. Then please verify you're logged in to iCloud using the same Apple ID in the Settings app on all devices. On iPhone and iPad this will be in your Settings App->iCloud section. Lastly also verify Documents & Data syncing is enabled in Settings App->iCloud->Documents & Data.\n\nTo enable syncing to the Mac app verify iCloud is enabled on your Mac's System Preferences->iCloud."
+        },
+        {
+            "q": "How do I change the order of my cities?",
+            "a": "You can reorder your cities in the Edit Cities section of Living Earth's Settings. Tap and hold the horizontal bars to the right of the city name and drag the city to the position you'd like."
+        },
+        {
+            "q": "The alarm isn't working reliably.", 
+            "a": "Make sure you have the app running and in the foreground. You can still lock the iPhone/iPad. If the app isn't running it'll play a backup alarm sound.  Unfortunately it's an iOS limitation and all third party app alarms behave this way."
+        },
+        {
+            "q": "Can I use this app as my wallpaper or have it on my lock screen?",
+            "a": "It's currently not possible for any app to be displayed as live wallpaper or to be shown on the lock screen. If it ever becomes possible we'll definitely enable it as a feature."
+        },
+        {
+            "q": "How do I use this app on my other iPhone or iPad device?",
+            "a": "Living Earth is a universal app which means one purchase allows you to use the app on both iPhone and iPad. Make sure you're logged into the App Store with the same Apple ID you used to originally purchase the app on the other devices and download Living Earth from the App Store."
+        },
+    ]
+}
