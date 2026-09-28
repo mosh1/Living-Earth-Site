@@ -1,0 +1,9 @@
+@import "tailwindcss";
+
+@theme {
+  --color-space: #050912;
+  --color-space-light: #0b1426;
+  --color-glow: #4aa3ff;
+}
+
+html { scroll-behavior: smooth; }

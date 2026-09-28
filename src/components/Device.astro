@@ -1,0 +1,29 @@
+---
+import { Image } from 'astro:assets';
+import type { ImageMetadata } from 'astro';
+import iphone from '../assets/bezel-iphone-18-pro.png';
+import ipad from '../assets/bezel-ipad-pro-11.png';
+
+// Apple's product bezels (developer.apple.com/design/resources). The screen cutout is transparent;
+// its position is measured from the PNG alpha channel, as a percentage of the bezel image.
+const devices = {
+  iphone: { bezel: iphone, widths: [300, 600, 900, 1350], screen: { left: 5.333, top: 2.5, width: 89.333, height: 95 } },
+  ipad: { bezel: ipad, widths: [520, 1040, 1880], screen: { left: 5.638, top: 4.167, width: 88.723, height: 91.667 } },
+};
+
+interface Props {
+  device: keyof typeof devices;
+  src: ImageMetadata;
+  alt: string;
+  sizes: string;
+  class?: string;
+}
+const { device, src, alt, sizes, class: cls = '' } = Astro.props;
+const { bezel, widths, screen } = devices[device];
+const screenStyle = `left:${screen.left}%;top:${screen.top}%;width:${screen.width}%;height:${screen.height}%`;
+---
+
+<div class={`relative drop-shadow-2xl ${cls}`}>
+  <Image src={src} alt={alt} sizes={sizes} class="absolute bg-black object-contain" style={screenStyle} />
+  <Image src={bezel} alt="" widths={widths} sizes={sizes} class="relative z-10 h-auto w-full" />
+</div>

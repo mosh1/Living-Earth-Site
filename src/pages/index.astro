@@ -1,0 +1,187 @@
+---
+import { Image, Picture } from 'astro:assets';
+import { Cloud, Globe, Clock, Tornado, Sunrise, Sparkles, LayoutGrid, RefreshCw, Tablet, Star } from 'lucide-astro';
+import Layout from '../layouts/Layout.astro';
+import Faq from '../components/Faq.astro';
+import Device from '../components/Device.astro';
+import { IOS_URL, MAC_URL, lookup } from '../appstore';
+import badgeIos from '../assets/badge-app-store.svg';
+import badgeMac from '../assets/badge-mac-app-store.svg';
+import heroBg from '../assets/EarthWithStars.jpg';
+import closingBg from '../assets/earth.jpg';
+import ipad from '../assets/ipad1.jpg';
+import iphoneHero from '../assets/iphone6.jpg';
+import shotClouds from '../assets/iphone1.jpg';
+import shotMaps from '../assets/iphone5.jpg';
+import shotClock from '../assets/iphone3.jpg';
+import shotStorm from '../assets/iphone2.jpg';
+
+const [ios, mac] = await Promise.all([lookup(379869627), lookup(539362919)]);
+// Fallbacks are the App Store values as of September 2026, used only if the lookup fails during a build.
+const rating = (ios?.averageUserRating ?? 4.8).toFixed(1);
+const ratingCount = ios?.userRatingCount ?? 15000;
+const iosPrice = ios?.formattedPrice ?? '$5.99';
+const macPrice = mac?.formattedPrice ?? '$12.99';
+
+const press = [
+  { quote: 'In a sea of more complicated and ambitious apps, Living Earth is beautifully simple.', source: 'The New York Times' },
+  { quote: 'Living Earth is proof that a world clock and weather app can be beautiful.', source: 'Apple' },
+  { quote: 'A stunning app that shows the Earth in real time, based on global weather reports.', source: 'Wired' },
+  { quote: 'Living Earth is visually impressive and just fun.', source: 'MacStories' },
+];
+
+const features = [
+  { icon: Cloud, title: 'Live clouds', text: 'Near real-time satellite cloud data. Watch global cloud patterns, hurricanes, and tropical storms move across the planet.', shot: shotClouds, alt: 'Clouds over North America on the live globe' },
+  { icon: Globe, title: 'Weather maps', text: 'Live maps of temperature, humidity, wind, and forecasts layered directly onto the globe.', shot: shotMaps, alt: 'Temperature map layered on the globe' },
+  { icon: Clock, title: 'World clock', text: 'Time, weather, and 10-day / 2-hour forecasts for millions of cities around the world.', shot: shotClock, alt: 'World clock list with local time and weather for six cities' },
+  { icon: Tornado, title: 'Cyclone alerts', text: 'Push notifications for new tropical cyclones and updates on active storm systems.', shot: shotStorm, alt: 'Super Typhoon Vongfong tracked over the Pacific with category and wind speed' },
+];
+
+const more = [
+  { icon: Sunrise, title: 'Sunrise & sunset', text: 'Sunrise and sunset times for every city.' },
+  { icon: Sparkles, title: 'Stars & Milky Way', text: 'Stars, constellations, and the Milky Way rendered accurately in time and space.' },
+  { icon: LayoutGrid, title: 'Today widget', text: 'Weather essentials, sunrise and sunset, world clock, and active cyclones at a glance.' },
+  { icon: RefreshCw, title: 'iCloud sync', text: 'Your cities stay in sync across iPhone, iPad, and Mac.' },
+  { icon: Tablet, title: 'Universal app', text: 'One purchase for iPhone and iPad. Weather by CustomWeather.' },
+];
+
+const faq = [
+  { q: 'How much does Living Earth cost?', a: `Living Earth is ${iosPrice} on the App Store, a one-time purchase that covers both iPhone and iPad. There is no subscription. Living Earth for Mac is a separate app, ${macPrice} on the Mac App Store.` },
+  { q: 'Which devices does it run on?', a: 'iPhone and iPad running iOS 17 or later. Living Earth for Mac is sold separately on the Mac App Store.' },
+  { q: 'Where does the weather data come from?', a: 'Forecasts and current conditions come from CustomWeather, with near real-time satellite cloud imagery layered onto the globe.' },
+  { q: 'Do my cities sync between devices?', a: 'Yes. Turn on Sync Cities in Settings and your city list syncs over iCloud between iPhone, iPad, and the Mac app.' },
+  { q: 'Will it warn me about storms?', a: 'Living Earth can send push notifications when a new tropical cyclone forms and as active storms are updated.' },
+];
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'SoftwareApplication',
+  name: 'Living Earth',
+  applicationCategory: 'WeatherApplication',
+  operatingSystem: 'iOS, iPadOS, macOS',
+  url: 'https://www.livingearthapp.com/',
+  offers: { '@type': 'Offer', price: ios?.price ?? 5.99, priceCurrency: ios?.currency ?? 'USD' },
+  aggregateRating: { '@type': 'AggregateRating', ratingValue: rating, ratingCount },
+  author: { '@type': 'Organization', name: 'Radiantlabs, LLC' },
+};
+---
+
+<Layout
+  title="Living Earth — Live 3D Earth, World Clock & Weather for iPhone, iPad and Mac"
+  description="A live 3D simulation of our planet with real-time clouds, weather maps, tropical cyclone tracking, and a world clock for millions of cities."
+>
+  <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+
+  <!-- Hero -->
+  <section class="relative isolate overflow-hidden">
+    <Picture
+      src={heroBg} widths={[768, 1280, 1920, 3072]} sizes="100vw" formats={['avif', 'webp']} alt="" loading="eager" fetchpriority="high"
+      class="absolute inset-0 -z-10 h-full w-full object-cover object-[50%_0%] lg:object-[0%_0%]"
+    />
+    <div class="absolute inset-0 -z-10 bg-gradient-to-b from-space/70 via-space/50 to-space lg:from-space/40 lg:via-space/15"></div>
+
+    <div class="mx-auto grid max-w-6xl items-center gap-14 px-6 pb-20 pt-32 lg:grid-cols-2 lg:pb-20 lg:pt-44">
+      <div class="text-center [text-shadow:0_2px_16px_rgba(0,0,0,.85)] lg:text-left">
+        <h1 class="text-balance text-5xl font-bold tracking-tight sm:text-6xl xl:text-7xl">The Earth, live on your screen.</h1>
+        <p class="mx-auto mt-6 max-w-xl text-pretty text-lg text-white/75 sm:text-xl lg:mx-0">
+          A live 3D simulation of our planet with real-time clouds, weather, tropical cyclone tracking, and a world clock for millions of cities.
+        </p>
+        <div class="mt-8 flex items-center justify-center gap-4 lg:justify-start">
+          <a href={IOS_URL}><Image src={badgeIos} alt="Download on the App Store" class="h-12 w-auto" /></a>
+          <a href={MAC_URL} class="hidden sm:block"><Image src={badgeMac} alt="Download on the Mac App Store" class="h-12 w-auto" /></a>
+        </div>
+        <p class="mt-5 flex items-center justify-center gap-2 text-sm text-white/70 lg:justify-start">
+          <Star class="h-4 w-4 fill-amber-400 text-amber-400" aria-hidden="true" />
+          <span><span class="font-semibold text-white">{rating}</span> · {Math.floor(ratingCount / 1000)}K ratings · On the App Store since 2010</span>
+        </p>
+      </div>
+
+      <div class="relative mx-auto w-full max-w-[520px] md:mb-10">
+        <Device device="ipad" src={ipad} alt="Living Earth on iPad Pro showing the forecast panel over Europe" sizes="520px" class="hidden md:block" />
+        <Device device="iphone" src={iphoneHero} alt="Living Earth on iPhone at sunrise over Barcelona" sizes="(min-width: 768px) 190px, 256px" class="mx-auto w-64 md:absolute md:-bottom-10 md:-right-6 md:w-[36%]" />
+      </div>
+    </div>
+  </section>
+
+  <!-- Press -->
+  <section class="border-y border-white/10 bg-space-light/60">
+    <ul class="mx-auto grid max-w-6xl gap-8 px-6 py-10 sm:grid-cols-2 lg:grid-cols-4">
+      {press.map(({ quote, source }) => (
+        <li>
+          <blockquote>
+            <p class="text-pretty text-white/85">“{quote}”</p>
+            <footer class="mt-2 text-xs uppercase tracking-wider text-white/45">{source}</footer>
+          </blockquote>
+        </li>
+      ))}
+    </ul>
+  </section>
+
+  <!-- Features -->
+  <section id="features" class="mx-auto w-full max-w-6xl px-6 py-24">
+    <h2 class="max-w-2xl text-balance text-3xl font-bold tracking-tight sm:text-4xl">A new perspective on time and weather.</h2>
+    <div class="mt-16 space-y-24">
+      {features.map(({ icon: Icon, title, text, shot, alt }, i) => (
+        <div class="grid items-center gap-10 md:grid-cols-2">
+          <div class={i % 2 ? 'md:order-last' : ''}>
+            <Icon class="h-8 w-8 text-glow" aria-hidden="true" />
+            <h3 class="mt-4 text-2xl font-semibold">{title}</h3>
+            <p class="mt-3 max-w-md text-lg text-white/65">{text}</p>
+          </div>
+          <Device device="iphone" src={shot} alt={alt} sizes="288px" class="mx-auto w-64 sm:w-72" />
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <!-- More -->
+  <section class="bg-space-light py-16">
+    <div class="mx-auto max-w-6xl px-6">
+      <h2 class="text-sm font-semibold uppercase tracking-wider text-white/50">Also</h2>
+      <ul class="mt-6 grid gap-x-8 gap-y-8 sm:grid-cols-2 lg:grid-cols-5">
+        {more.map(({ icon: Icon, title, text }) => (
+          <li>
+            <Icon class="h-6 w-6 text-glow" aria-hidden="true" />
+            <h3 class="mt-3 font-semibold">{title}</h3>
+            <p class="mt-1 text-sm text-white/60">{text}</p>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
+
+  <!-- Mac -->
+  <section class="mx-auto w-full max-w-6xl px-6 py-24">
+    <div class="flex flex-col items-start gap-8 rounded-3xl border border-white/10 bg-space-light p-8 sm:p-12 md:flex-row md:items-center md:justify-between">
+      <div>
+        <h2 class="text-balance text-3xl font-bold tracking-tight">Also on your Mac.</h2>
+        <p class="mt-3 max-w-xl text-white/70">
+          Living Earth for Mac brings the live globe, world clock, and forecasts to your desktop, with your cities synced from iPhone and iPad over iCloud. Sold separately, {macPrice}.
+        </p>
+      </div>
+      <a href={MAC_URL} class="shrink-0"><Image src={badgeMac} alt="Download on the Mac App Store" class="h-12 w-auto" /></a>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section id="faq" class="bg-space-light py-24">
+    <div class="mx-auto max-w-3xl px-6">
+      <h2 class="text-balance text-3xl font-bold tracking-tight sm:text-4xl">Questions</h2>
+      <div class="mt-10"><Faq items={faq} /></div>
+      <p class="mt-8 text-sm text-white/50">Already using Living Earth? See <a href="/support/" class="underline hover:text-white">support</a>.</p>
+    </div>
+  </section>
+
+  <!-- Closing -->
+  <section class="relative isolate overflow-hidden">
+    <Picture src={closingBg} widths={[768, 1280, 1526]} sizes="100vw" formats={['avif', 'webp']} alt="" loading="lazy" class="absolute inset-0 -z-10 h-full w-full object-cover object-[50%_60%]" />
+    <div class="absolute inset-0 -z-10 bg-gradient-to-b from-space-light via-space/50 to-space/40"></div>
+    <div class="mx-auto max-w-6xl px-6 py-32 text-center [text-shadow:0_2px_16px_rgba(0,0,0,.85)] sm:py-44">
+      <h2 class="mx-auto max-w-3xl text-balance text-4xl font-bold tracking-tight sm:text-6xl">See the Earth as it is right now.</h2>
+      <div class="mt-10 flex flex-wrap items-center justify-center gap-4">
+        <a href={IOS_URL}><Image src={badgeIos} alt="Download on the App Store" class="h-12 w-auto" /></a>
+        <a href={MAC_URL}><Image src={badgeMac} alt="Download on the Mac App Store" class="h-12 w-auto" /></a>
+      </div>
+    </div>
+  </section>
+</Layout>

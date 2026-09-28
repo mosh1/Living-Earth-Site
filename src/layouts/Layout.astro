@@ -1,0 +1,59 @@
+---
+import '../styles/global.css';
+import { IOS_URL } from '../appstore';
+
+interface Props {
+  title: string;
+  description: string;
+}
+const { title, description } = Astro.props;
+const canonical = new URL(Astro.url.pathname, Astro.site);
+---
+
+<!doctype html>
+<html lang="en" class="bg-space text-white antialiased">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
+    <link rel="icon" type="image/png" href="/favicon.png" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <meta name="theme-color" content="#050912" />
+    <meta name="apple-itunes-app" content="app-id=379869627, affiliate-data=at=11l4CN&ct=LivingEarth_Website_SmartBanner" />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Living Earth" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:image" content={new URL('/og-image.jpg', Astro.site)} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="generator" content={Astro.generator} />
+  </head>
+  <body class="flex min-h-screen flex-col">
+    <header class="fixed inset-x-0 top-0 z-50 border-b border-white/5 bg-space/60 backdrop-blur-md">
+      <div class="mx-auto flex max-w-6xl items-center justify-between px-6 py-3">
+        <a href="/" class="flex items-center gap-3 font-semibold tracking-tight">
+          <img src="/favicon.png" alt="" width="32" height="32" class="h-8 w-8 rounded-lg" />
+          Living Earth
+        </a>
+        <a href={IOS_URL} class="rounded-full bg-white px-4 py-1.5 text-sm font-semibold text-space transition hover:bg-white/90">Download</a>
+      </div>
+    </header>
+    <slot />
+    <footer class="mt-auto border-t border-white/10 py-10 text-sm text-white/50">
+      <div class="mx-auto flex max-w-6xl flex-col items-center gap-4 px-6 sm:flex-row sm:justify-between">
+        <p>&copy; {new Date().getFullYear()} Radiantlabs, LLC. Made in San Francisco, CA.</p>
+        <nav class="flex gap-6">
+          <a class="hover:text-white" href="/privacy/">Privacy</a>
+          <a class="hover:text-white" href="/tos.html">Terms</a>
+          <a class="hover:text-white" href="/support/">Support</a>
+          <a class="hover:text-white" href="mailto:contact@radiantlabs.io">Contact</a>
+        </nav>
+      </div>
+    </footer>
+  </body>
+</html>

@@ -1,0 +1,19 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Faq from '../components/Faq.astro';
+import faqRaw from '../../public/FAQ.json?raw';
+
+// FAQ.json is fetched by the shipping app and has a trailing comma it tolerates; strip it before parsing.
+const faq: { q: string; a: string }[] = JSON.parse(faqRaw.replace(/,\s*([\]}])/g, '$1')).FAQ;
+---
+
+<Layout title="Living Earth Support" description="Answers to common questions about Living Earth for iPhone, iPad, and Mac.">
+  <section class="mx-auto w-full max-w-3xl px-6 pb-24 pt-32">
+    <h1 class="text-4xl font-bold tracking-tight">Support</h1>
+    <p class="mt-4 text-white/70">
+      Common questions about Living Earth for iPhone and iPad. For the Mac app, see <a href="/mac_support/" class="underline hover:text-white">Mac support</a>.
+      Still stuck? Email <a href="mailto:contact@radiantlabs.io" class="underline hover:text-white">contact@radiantlabs.io</a>.
+    </p>
+    <div class="mt-10"><Faq items={faq} /></div>
+  </section>
+</Layout>
