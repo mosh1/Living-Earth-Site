@@ -293,7 +293,7 @@ const jsonLd = {
      the horizon colour comes in only below the buttons. */
   :root[data-sky="night"] { --sky-top: #02030a; --sky-mid: #091634; --sky-low: #1d3a6e; --deep: #03060f; --word-a: #64D2FF; --word-b: #8e8cff; }
   :root[data-sky="dawn"]  { --sky-top: #0b1233; --sky-mid: #2c2c63; --sky-low: #d9887a; --deep: #0b0f26; --word-a: #ffc3a0; --word-b: #ff8fb1; }
-  :root[data-sky="day"]   { --sky-top: #07397a; --sky-mid: #135aa8; --sky-low: #5fa6e3; --deep: #07264a; --word-a: #fff1a8; --word-b: #FFD60A; }
+  :root[data-sky="day"]   { --sky-top: #021a48; --sky-mid: #0e5cb8; --sky-low: #9fd2f6; --deep: #04193a; --word-a: #fff1a8; --word-b: #FFD60A; }
   :root[data-sky="dusk"]  { --sky-top: #100b2e; --sky-mid: #3a2160; --sky-low: #f0804a; --deep: #0f0a24; --word-a: #FF9F0A; --word-b: #ff5f8a; }
 
   body { background: var(--deep); }
@@ -324,9 +324,9 @@ const jsonLd = {
   .sky-panel h1 em { font-style: normal; background: linear-gradient(90deg, var(--word-a), var(--word-b)); -webkit-background-clip: text; background-clip: text; color: transparent; }
   .sky-panel .sub { max-width: 44ch; margin: 18px auto 0; font-size: 21px; line-height: 1.4; color: rgba(255,255,255,.86); }
   .sky-panel .laurels { margin-top: 28px; }
-  .sky-panel .laurel span { color: rgba(255,255,255,.75); }
+  /* The two small lines sit low, where the day sky's pale horizon begins, so they take full white */
+  .sky-panel .laurel span, .sky-panel .qr span { color: #fff; }
   .sky-panel .badges { justify-content: center; margin-top: 22px; }
-  .sky-panel .qr span { color: rgba(255,255,255,.75); }
 
   /* One reason per section, as Binge lays them out: a label, a short headline, two sentences
      and one picture, alternating sides. */
