@@ -1,5 +1,4 @@
 export const IOS_URL = 'https://apps.apple.com/us/app/living-earth-clock-weather/id379869627?at=11l4CN&ct=LivingEarth_Website';
-export const MAC_URL = 'https://apps.apple.com/us/app/living-earth-desktop-weather-world-clock/id539362919?mt=12&ct=LivingEarth_Website';
 
 interface Listing {
   price?: number;

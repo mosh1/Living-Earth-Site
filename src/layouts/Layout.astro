@@ -1,5 +1,6 @@
 ---
 import '../styles/global.css';
+import '../styles/site.css';
 import { IOS_URL } from '../appstore';
 
 interface Props {
@@ -11,16 +12,17 @@ const canonical = new URL(Astro.url.pathname, Astro.site);
 ---
 
 <!doctype html>
-<html lang="en" class="bg-space text-white antialiased">
+<html lang="en">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
     <title>{title}</title>
     <meta name="description" content={description} />
     <link rel="canonical" href={canonical} />
     <link rel="icon" type="image/png" href="/favicon.png" />
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
-    <meta name="theme-color" content="#050912" />
+    <meta name="theme-color" content="#000000" />
+    <!-- Safari on iPhone and iPad shows a banner to open or get the app -->
     <meta name="apple-itunes-app" content="app-id=379869627, affiliate-data=at=11l4CN&ct=LivingEarth_Website_SmartBanner" />
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content="Living Earth" />
@@ -31,29 +33,24 @@ const canonical = new URL(Astro.url.pathname, Astro.site);
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
     <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content="@livingearthapp" />
     <meta name="generator" content={Astro.generator} />
+    <slot name="head" />
   </head>
   <body class="flex min-h-screen flex-col">
-    <header class="fixed inset-x-0 top-0 z-50 border-b border-white/5 bg-space/60 backdrop-blur-md">
-      <div class="mx-auto flex max-w-6xl items-center justify-between px-6 py-3">
-        <a href="/" class="flex items-center gap-3 font-semibold tracking-tight">
-          <img src="/favicon.png" alt="" width="32" height="32" class="h-8 w-8 rounded-lg" />
-          Living Earth
-        </a>
-        <a href={IOS_URL} class="rounded-full bg-white px-4 py-1.5 text-sm font-semibold text-space transition hover:bg-white/90">Download</a>
-      </div>
+    <header class="nav">
+      <a class="brand" href="/"><img src="/favicon.png" alt="" width="28" height="28" />Living Earth</a>
+      <a class="capsule glass" href={IOS_URL}>Download</a>
     </header>
     <slot />
-    <footer class="mt-auto border-t border-white/10 py-10 text-sm text-white/50">
-      <div class="mx-auto flex max-w-6xl flex-col items-center gap-4 px-6 sm:flex-row sm:justify-between">
-        <p>&copy; {new Date().getFullYear()} Radiantlabs, LLC. Made in San Francisco, CA.</p>
-        <nav class="flex gap-6">
-          <a class="hover:text-white" href="/privacy/">Privacy</a>
-          <a class="hover:text-white" href="/tos.html">Terms</a>
-          <a class="hover:text-white" href="/support/">Support</a>
-          <a class="hover:text-white" href="mailto:contact@radiantlabs.io">Contact</a>
-        </nav>
-      </div>
+    <footer class="footer mt-auto">
+      <span>&copy; {new Date().getFullYear()} Radiantlabs, LLC</span>
+      <nav>
+        <a href="mailto:contact@radiantlabs.io">contact@radiantlabs.io</a>
+        <!-- X's logo from its brand toolkit, unaltered, in the text colour -->
+        <a class="x" href="https://x.com/livingearthapp" aria-label="Living Earth on X"><svg viewBox="0 0 1200 1227" aria-hidden="true"><path fill="currentColor" d="M714.163 519.284 1160.89 0h-105.86L667.137 450.887 357.328 0H0l468.492 681.821L0 1226.37h105.866l409.625-476.152 327.181 476.152H1200L714.137 519.284h.026ZM569.165 687.828l-47.468-67.894-377.686-540.24h162.604l304.797 435.991 47.468 67.894 396.2 566.721H892.476L569.165 687.854v-.026Z"/></svg>@livingearthapp</a>
+        <a href="/privacy/">Privacy</a>
+      </nav>
     </footer>
   </body>
 </html>

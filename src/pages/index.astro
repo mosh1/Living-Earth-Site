@@ -1,65 +1,50 @@
 ---
-import { Image, Picture } from 'astro:assets';
-import { Cloud, Globe, Clock, Tornado, Sunrise, Sparkles, LayoutGrid, RefreshCw, Tablet, Star } from 'lucide-astro';
+import { Image } from 'astro:assets';
 import Layout from '../layouts/Layout.astro';
-import Faq from '../components/Faq.astro';
-import Device from '../components/Device.astro';
-import { IOS_URL, MAC_URL, lookup } from '../appstore';
-import badgeIos from '../assets/badge-app-store.svg';
-import badgeMac from '../assets/badge-mac-app-store.svg';
-import heroBg from '../assets/EarthWithStars.jpg';
-import closingBg from '../assets/earth.jpg';
-import ipad from '../assets/ipad1.jpg';
-import iphoneHero from '../assets/iphone6.jpg';
-import shotClouds from '../assets/iphone1.jpg';
-import shotMaps from '../assets/iphone5.jpg';
-import shotClock from '../assets/iphone3.jpg';
-import shotStorm from '../assets/iphone2.jpg';
+import { IOS_URL, lookup } from '../appstore';
+import { reviews } from '../reviews';
+// IANA time zone -> [lat, lon] of its city, from tzdata's zone.tab
+import zones from '../zones.js?raw';
+import badge from '../assets/badge-app-store.svg';
+import qr from '../assets/home/qr-app-store.svg';
+import ipadClouds from '../assets/home/ipad-02-clouds.png';
+import duoStorms from '../assets/home/duo-closed-03-storms.png';
+import duoCities from '../assets/home/duo-open-06-cities.png';
+import zoomLabels from '../assets/home/zoom-labels.jpg';
+import iphoneEclipse from '../assets/home/iphone-07-eclipse.png';
+import iphoneForecast from '../assets/home/iphone-04-forecast.png';
+import ipadForecast from '../assets/home/ipad-04-forecast.png';
+import duoForecast from '../assets/home/duo-closed-04-forecast.png';
+import iphoneClouds from '../assets/home/iphone-02-clouds.png';
+import film from '../assets/home/dawn-over-europe.mp4';
+import filmPoster from '../assets/home/dawn-over-europe.jpg';
 
-const [ios, mac] = await Promise.all([lookup(379869627), lookup(539362919)]);
-// Fallbacks are the App Store values as of September 2026, used only if the lookup fails during a build.
-const rating = (ios?.averageUserRating ?? 4.8).toFixed(1);
-const ratingCount = ios?.userRatingCount ?? 15000;
-const iosPrice = ios?.formattedPrice ?? '$5.99';
-const macPrice = mac?.formattedPrice ?? '$12.99';
+// The device images are composites of the app's own captures in Apple's bezels, each as many
+// inches wide as the device at 120 px per inch (livingearth-design/website/tools/build-v2.py).
+// public/hero/ holds the hero's regions, picked in the browser, so they are WebP already
+// (cwebp -q 80 -m 6); the rest go through Astro's image pipeline.
+
+const ios = await lookup(379869627);
+// Fallbacks are the App Store's values on 9 Oct 2026, used only if the lookup fails during a build.
+const rating = (ios?.averageUserRating ?? 4.77).toFixed(1);
+const ratingCount = ios?.userRatingCount ?? 15534;
+const price = ios?.formattedPrice ?? '$5.99';
+const thousands = Math.floor(ratingCount / 1000);
 
 const press = [
   { quote: 'In a sea of more complicated and ambitious apps, Living Earth is beautifully simple.', source: 'The New York Times' },
-  { quote: 'Living Earth is proof that a world clock and weather app can be beautiful.', source: 'Apple' },
-  { quote: 'A stunning app that shows the Earth in real time, based on global weather reports.', source: 'Wired' },
+  { quote: 'Living Earth is proof that a world clock and weather app can be beautiful.', source: 'Apple, App Store' },
+  { quote: 'A stunning app that shows the Earth in real time, based on global weather reports.', source: 'WIRED Insider' },
   { quote: 'Living Earth is visually impressive and just fun.', source: 'MacStories' },
-];
-
-const features = [
-  { icon: Cloud, title: 'Live clouds', text: 'Near real-time satellite cloud data. Watch global cloud patterns, hurricanes, and tropical storms move across the planet.', shot: shotClouds, alt: 'Clouds over North America on the live globe' },
-  { icon: Globe, title: 'Weather maps', text: 'Live maps of temperature, humidity, wind, and forecasts layered directly onto the globe.', shot: shotMaps, alt: 'Temperature map layered on the globe' },
-  { icon: Clock, title: 'World clock', text: 'Time, weather, and 10-day / 2-hour forecasts for millions of cities around the world.', shot: shotClock, alt: 'World clock list with local time and weather for six cities' },
-  { icon: Tornado, title: 'Cyclone alerts', text: 'Push notifications for new tropical cyclones and updates on active storm systems.', shot: shotStorm, alt: 'Super Typhoon Vongfong tracked over the Pacific with category and wind speed' },
-];
-
-const more = [
-  { icon: Sunrise, title: 'Sunrise & sunset', text: 'Sunrise and sunset times for every city.' },
-  { icon: Sparkles, title: 'Stars & Milky Way', text: 'Stars, constellations, and the Milky Way rendered accurately in time and space.' },
-  { icon: LayoutGrid, title: 'Today widget', text: 'Weather essentials, sunrise and sunset, world clock, and active cyclones at a glance.' },
-  { icon: RefreshCw, title: 'iCloud sync', text: 'Your cities stay in sync across iPhone, iPad, and Mac.' },
-  { icon: Tablet, title: 'Universal app', text: 'One purchase for iPhone and iPad. Weather by CustomWeather.' },
-];
-
-const faq = [
-  { q: 'How much does Living Earth cost?', a: `Living Earth is ${iosPrice} on the App Store, a one-time purchase that covers both iPhone and iPad. There is no subscription. Living Earth for Mac is a separate app, ${macPrice} on the Mac App Store.` },
-  { q: 'Which devices does it run on?', a: 'iPhone and iPad running iOS 17 or later. Living Earth for Mac is sold separately on the Mac App Store.' },
-  { q: 'Where does the weather data come from?', a: 'Forecasts and current conditions come from CustomWeather, with near real-time satellite cloud imagery layered onto the globe.' },
-  { q: 'Do my cities sync between devices?', a: 'Yes. Turn on Sync Cities in Settings and your city list syncs over iCloud between iPhone, iPad, and the Mac app.' },
-  { q: 'Will it warn me about storms?', a: 'Living Earth can send push notifications when a new tropical cyclone forms and as active storms are updated.' },
 ];
 
 const jsonLd = {
   '@context': 'https://schema.org',
   '@type': 'SoftwareApplication',
   name: 'Living Earth',
+  operatingSystem: 'iOS 18.5 or later',
   applicationCategory: 'WeatherApplication',
-  operatingSystem: 'iOS, iPadOS, macOS',
-  url: 'https://www.livingearthapp.com/',
+  url: 'https://apps.apple.com/app/id379869627',
   offers: { '@type': 'Offer', price: ios?.price ?? 5.99, priceCurrency: ios?.currency ?? 'USD' },
   aggregateRating: { '@type': 'AggregateRating', ratingValue: rating, ratingCount },
   author: { '@type': 'Organization', name: 'Radiantlabs, LLC' },
@@ -67,121 +52,345 @@ const jsonLd = {
 ---
 
 <Layout
-  title="Living Earth — Live 3D Earth, World Clock & Weather for iPhone, iPad and Mac"
-  description="A live 3D simulation of our planet with real-time clouds, weather maps, tropical cyclone tracking, and a world clock for millions of cities."
+  title="Living Earth: our planet, live"
+  description="See our planet as it looks from space right now, with live clouds, storms and the weather in the places you care about. For iPhone, iPad and iPhone Duo."
 >
-  <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+  <Fragment slot="head">
+    <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+    <script is:inline set:html={zones} />
+    <script is:inline>
+      // Where and when the visitor is: tzdata places each time zone's city, so no location prompt.
+      // The page never names that city (a zone covers far more than the city it is named after);
+      // it only places the Sun, and picks the region the hero shows. Zones tzdata does not list
+      // (UTC, old aliases) fall back to the clock for the phase and the Americas west for the hero.
+      window.LE = {
+        here: window.LE_ZONES[Intl.DateTimeFormat().resolvedOptions().timeZone || ''],
 
-  <!-- Hero -->
-  <section class="relative isolate overflow-hidden">
-    <Picture
-      src={heroBg} widths={[768, 1280, 1920, 3072]} sizes="100vw" formats={['avif', 'webp']} alt="" loading="eager" fetchpriority="high"
-      class="absolute inset-0 -z-10 h-full w-full object-cover object-[50%_0%] lg:object-[0%_0%]"
-    />
-    <div class="absolute inset-0 -z-10 bg-gradient-to-b from-space/70 via-space/50 to-space lg:from-space/40 lg:via-space/15"></div>
+        // The Sun's height above the horizon at a place, in degrees, from the low-precision
+        // solar position in the Astronomical Almanac (good to ~0.01°).
+        sunElevation(lat, lon, date) {
+          const rad = Math.PI / 180, d = date / 86400000 + 2440587.5 - 2451545.0;
+          const g = (357.529 + 0.98560028 * d) * rad;
+          const L = (280.459 + 0.98564736 * d + 1.915 * Math.sin(g) + 0.020 * Math.sin(2 * g)) * rad;
+          const e = (23.439 - 0.00000036 * d) * rad;
+          const ra = Math.atan2(Math.cos(e) * Math.sin(L), Math.cos(L)) / rad;
+          const dec = Math.asin(Math.sin(e) * Math.sin(L)) / rad;
+          const gmst = (18.697374558 + 24.06570982441908 * d) % 24;
+          const sunLon = ((ra - gmst * 15) % 360 + 540) % 360 - 180;
+          return Math.asin(Math.sin(lat * rad) * Math.sin(dec * rad) +
+            Math.cos(lat * rad) * Math.cos(dec * rad) * Math.cos((lon - sunLon) * rad)) / rad;
+        },
 
-    <div class="mx-auto grid max-w-6xl items-center gap-14 px-6 pb-20 pt-32 lg:grid-cols-2 lg:pb-20 lg:pt-44">
-      <div class="text-center [text-shadow:0_2px_16px_rgba(0,0,0,.85)] lg:text-left">
-        <h1 class="text-balance text-5xl font-bold tracking-tight sm:text-6xl xl:text-7xl">The Earth, live on your screen.</h1>
-        <p class="mx-auto mt-6 max-w-xl text-pretty text-lg text-white/75 sm:text-xl lg:mx-0">
-          A live 3D simulation of our planet with real-time clouds, weather, tropical cyclone tracking, and a world clock for millions of cities.
-        </p>
-        <div class="mt-8 flex items-center justify-center gap-4 lg:justify-start">
-          <a href={IOS_URL}><Image src={badgeIos} alt="Download on the App Store" class="h-12 w-auto" /></a>
-          <a href={MAC_URL} class="hidden sm:block"><Image src={badgeMac} alt="Download on the Mac App Store" class="h-12 w-auto" /></a>
+        phaseAt(d) {
+          if (!LE.here) { const h = d.getHours() + d.getMinutes() / 60; return h < 6 || h >= 20 ? 'night' : h < 8 ? 'dawn' : h < 18 ? 'day' : 'dusk'; }
+          const sun = LE.sunElevation(LE.here[0], LE.here[1], d);
+          if (sun >= 6) return 'day';
+          if (sun < -6) return 'night';
+          return LE.sunElevation(LE.here[0], LE.here[1], new Date(+d + 600000)) > sun ? 'dawn' : 'dusk';
+        },
+
+        // The hero's regions (StoreShotsUITests.testSiteHero, testSiteZoom) and the city each shows.
+        regions: { 'americas-west': 'San Francisco', 'americas-central': 'Chicago', 'americas-east': 'New York City',
+          'south-america': 'São Paulo', 'europe': 'London', 'south-asia': 'Mumbai', 'east-asia': 'Tokyo',
+          'southeast-asia': 'Singapore', 'oceania': 'Sydney' },
+
+        // By the time zone city's place. The US splits by its zones: Pacific and Arizona west of
+        // -110, Mountain and Central to -87 (Denver, Chicago, Mexico City), Eastern east of that
+        // (Detroit, Indianapolis). Africa falls to Europe and Russia to Europe, by their hours.
+        regionAt: ([lat, lon]) =>
+            lon < -150 && lat < 0 ? 'oceania'                    // the South Pacific past the date line
+          : lon < -110 ? 'americas-west'
+          : lon < -30 ? (lat < 15 ? 'south-america' : lon < -87 ? 'americas-central' : 'americas-east')
+          : lon < 45 ? 'europe'
+          : lon < 92 ? 'south-asia'                              // the Gulf to Bangladesh
+          : lat < -10 ? 'oceania'
+          : lat < 20 ? 'southeast-asia' : 'east-asia',
+
+        paintHero(phase) {
+          const names = { iphone: 'iPhone', ipad: 'iPad' };
+          const city = LE.regions[LE.region], when = phase === 'day' ? 'midday' : phase;
+          document.querySelectorAll('[data-device]').forEach(img => {
+            const device = img.dataset.device, zoom = img.dataset.view === 'zoom';
+            img.src = `/hero/${LE.region}-${phase}${zoom ? '-zoom' : ''}-${device}.webp`;
+            img.alt = zoom ? `Living Earth on ${names[device]}: ${city}'s clouds up close at ${when}`
+              : `Living Earth on ${names[device]}: the Earth, ${city} at ${when}`;
+          });
+        },
+      };
+      // ?region= shows another region's hero, for review
+      const asked = new URLSearchParams(location.search).get('region');
+      LE.region = asked in LE.regions ? asked : LE.here ? LE.regionAt(LE.here) : 'americas-west';
+      document.documentElement.dataset.sky = LE.phaseAt(new Date());
+    </script>
+  </Fragment>
+
+  <main>
+    <section class="sky-panel">
+      <!-- The visitor's region in their own light, the whole Earth on iPhone and up close on iPad
+           at the same instant: set as the images are parsed, so only the visitor's set loads;
+           without script, the Americas west by day. -->
+      <div class="wrap hero-devices"><div class="devices-row">
+        <img class="iphone" style="--w: 3.19" width="383" height="783" data-device="iphone" alt="" />
+        <img class="ipad" style="--w: 11.37" width="1364" height="1045" data-device="ipad" data-view="zoom" alt="" />
+        <script is:inline>LE.paintHero(LE.phaseAt(new Date()))</script>
+        <noscript>
+          <img class="iphone" style="--w: 3.19" width="383" height="783" src="/hero/americas-west-day-iphone.webp" alt="Living Earth on iPhone: the Earth, San Francisco at midday" />
+          <img class="ipad" style="--w: 11.37" width="1364" height="1045" src="/hero/americas-west-day-zoom-ipad.webp" alt="Living Earth on iPad: San Francisco's clouds up close at midday" />
+        </noscript>
+      </div></div>
+      <div class="wrap">
+        <h1>It’s <em data-word>night</em> where you are.</h1>
+        <p class="sub">See our planet as it looks from space right now, with live clouds, storms and the weather in the places you care about.</p>
+        <div class="laurels"><div class="laurel"><strong>{rating} ★</strong><span>{thousands}K ratings on the App Store</span></div></div>
+        <div class="badges">
+          <a href={IOS_URL}><Image src={badge} alt="Download on the App Store" loading="eager" /></a>
+          <!-- Whoever scans may hold an iPad or another phone; "on the App Store" is Apple's wording. -->
+          <a class="qr" href={IOS_URL}><Image src={qr} alt="QR code for Living Earth on the App Store" loading="eager" /><span>Scan to get it<br />on the App Store</span></a>
         </div>
-        <p class="mt-5 flex items-center justify-center gap-2 text-sm text-white/70 lg:justify-start">
-          <Star class="h-4 w-4 fill-amber-400 text-amber-400" aria-hidden="true" />
-          <span><span class="font-semibold text-white">{rating}</span> · {Math.floor(ratingCount / 1000)}K ratings · On the App Store since 2010</span>
-        </p>
       </div>
+    </section>
 
-      <div class="relative mx-auto w-full max-w-[520px] md:mb-10">
-        <Device device="ipad" src={ipad} alt="Living Earth on iPad Pro showing the forecast panel over Europe" sizes="520px" class="hidden md:block" />
-        <Device device="iphone" src={iphoneHero} alt="Living Earth on iPhone at sunrise over Barcelona" sizes="(min-width: 768px) 190px, 256px" class="mx-auto w-64 md:absolute md:-bottom-10 md:-right-6 md:w-[36%]" />
-      </div>
-    </div>
-  </section>
-
-  <!-- Press -->
-  <section class="border-y border-white/10 bg-space-light/60">
-    <ul class="mx-auto grid max-w-6xl gap-8 px-6 py-10 sm:grid-cols-2 lg:grid-cols-4">
-      {press.map(({ quote, source }) => (
-        <li>
-          <blockquote>
-            <p class="text-pretty text-white/85">“{quote}”</p>
-            <footer class="mt-2 text-xs uppercase tracking-wider text-white/45">{source}</footer>
-          </blockquote>
-        </li>
-      ))}
-    </ul>
-  </section>
-
-  <!-- Features -->
-  <section id="features" class="mx-auto w-full max-w-6xl px-6 py-24">
-    <h2 class="max-w-2xl text-balance text-3xl font-bold tracking-tight sm:text-4xl">A new perspective on time and weather.</h2>
-    <div class="mt-16 space-y-24">
-      {features.map(({ icon: Icon, title, text, shot, alt }, i) => (
-        <div class="grid items-center gap-10 md:grid-cols-2">
-          <div class={i % 2 ? 'md:order-last' : ''}>
-            <Icon class="h-8 w-8 text-glow" aria-hidden="true" />
-            <h3 class="mt-4 text-2xl font-semibold">{title}</h3>
-            <p class="mt-3 max-w-md text-lg text-white/65">{text}</p>
-          </div>
-          <Device device="iphone" src={shot} alt={alt} sizes="288px" class="mx-auto w-64 sm:w-72" />
-        </div>
-      ))}
-    </div>
-  </section>
-
-  <!-- More -->
-  <section class="bg-space-light py-16">
-    <div class="mx-auto max-w-6xl px-6">
-      <h2 class="text-sm font-semibold uppercase tracking-wider text-white/50">Also</h2>
-      <ul class="mt-6 grid gap-x-8 gap-y-8 sm:grid-cols-2 lg:grid-cols-5">
-        {more.map(({ icon: Icon, title, text }) => (
-          <li>
-            <Icon class="h-6 w-6 text-glow" aria-hidden="true" />
-            <h3 class="mt-3 font-semibold">{title}</h3>
-            <p class="mt-1 text-sm text-white/60">{text}</p>
-          </li>
-        ))}
-      </ul>
-    </div>
-  </section>
-
-  <!-- Mac -->
-  <section class="mx-auto w-full max-w-6xl px-6 py-24">
-    <div class="flex flex-col items-start gap-8 rounded-3xl border border-white/10 bg-space-light p-8 sm:p-12 md:flex-row md:items-center md:justify-between">
+    <section class="feature wrap">
+      <div class="media"><Image src={ipadClouds} alt="Clouds over California on iPad" /></div>
       <div>
-        <h2 class="text-balance text-3xl font-bold tracking-tight">Also on your Mac.</h2>
-        <p class="mt-3 max-w-xl text-white/70">
-          Living Earth for Mac brings the live globe, world clock, and forecasts to your desktop, with your cities synced from iPhone and iPad over iCloud. Sold separately, {macPrice}.
-        </p>
+        <p class="eyebrow">Clouds</p>
+        <h2>Real clouds, every hour.</h2>
+        <p class="lede">Satellite images cover the globe, so the clouds you see are the ones overhead. Check back throughout the day to watch fronts and storms roll in.</p>
       </div>
-      <a href={MAC_URL} class="shrink-0"><Image src={badgeMac} alt="Download on the Mac App Store" class="h-12 w-auto" /></a>
-    </div>
-  </section>
+    </section>
 
-  <!-- FAQ -->
-  <section id="faq" class="bg-space-light py-24">
-    <div class="mx-auto max-w-3xl px-6">
-      <h2 class="text-balance text-3xl font-bold tracking-tight sm:text-4xl">Questions</h2>
-      <div class="mt-10"><Faq items={faq} /></div>
-      <p class="mt-8 text-sm text-white/50">Already using Living Earth? See <a href="/support/" class="underline hover:text-white">support</a>.</p>
-    </div>
-  </section>
+    <section class="band wrap">
+      <p class="eyebrow">Day and night</p>
+      <h2>See the sunrise sweep the planet.</h2>
+      <p class="lede">Day turns to night across the globe, and city lights come on as darkness falls. Every sunrise and sunset, as it happens.</p>
+      <div class="film"><video src={film} poster={filmPoster.src} autoplay muted loop playsinline aria-label="Dawn sweeping across Europe, rendered by Living Earth"></video></div>
+    </section>
 
-  <!-- Closing -->
-  <section class="relative isolate overflow-hidden">
-    <Picture src={closingBg} widths={[768, 1280, 1526]} sizes="100vw" formats={['avif', 'webp']} alt="" loading="lazy" class="absolute inset-0 -z-10 h-full w-full object-cover object-[50%_60%]" />
-    <div class="absolute inset-0 -z-10 bg-gradient-to-b from-space-light via-space/50 to-space/40"></div>
-    <div class="mx-auto max-w-6xl px-6 py-32 text-center [text-shadow:0_2px_16px_rgba(0,0,0,.85)] sm:py-44">
-      <h2 class="mx-auto max-w-3xl text-balance text-4xl font-bold tracking-tight sm:text-6xl">See the Earth as it is right now.</h2>
-      <div class="mt-10 flex flex-wrap items-center justify-center gap-4">
-        <a href={IOS_URL}><Image src={badgeIos} alt="Download on the App Store" class="h-12 w-auto" /></a>
-        <a href={MAC_URL}><Image src={badgeMac} alt="Download on the Mac App Store" class="h-12 w-auto" /></a>
+    <section class="feature flip wrap">
+      <div class="media"><Image src={duoStorms} alt="Super Typhoon Choi-wan on the cover screen of iPhone Duo, with its strength, speed and winds" /></div>
+      <div>
+        <p class="eyebrow">Storms</p>
+        <h2>Keep an eye on every storm.</h2>
+        <p class="lede">See hurricanes and typhoons anywhere in the world, with each storm’s category, speed and heading. Living Earth tells you when a new one forms or changes strength.</p>
       </div>
-    </div>
-  </section>
+    </section>
+
+    <section class="feature wrap">
+      <div class="media"><Image src={duoCities} alt="The time and weather in six cities beside the globe, on iPhone Duo" /></div>
+      <div>
+        <p class="eyebrow">Your cities</p>
+        <h2>A world clock with a view.</h2>
+        <p class="lede">Add the cities in your life: home, family far away, your next trip. See the time and weather in each at a glance, and tap one for the hourly and 10-day forecast.</p>
+      </div>
+    </section>
+
+    <section class="feature flip wrap">
+      <div class="media"><Image class="shot" src={zoomLabels} width={1200} alt="The Nile and the Red Sea up close, with country and city names" /></div>
+      <div>
+        <p class="eyebrow">Up close</p>
+        <h2>From orbit to coastline.</h2>
+        <p class="lede">Pinch in for a closer look at clouds, mountains and rivers. Borders and place names appear as you zoom, and Search takes you anywhere on Earth.</p>
+      </div>
+    </section>
+
+    <section class="feature wrap">
+      <div class="media"><Image src={iphoneEclipse} alt="A total solar eclipse in progress, the Moon's shadow over Arabia, on iPhone" /></div>
+      <div>
+        <p class="eyebrow">The sky</p>
+        <h2>Never miss an eclipse.</h2>
+        <p class="lede">Watch the Moon’s shadow race across the Earth, or the Moon turn deep red, and get an alert when a total eclipse begins. The Moon shows its current phase, set against the stars and the Milky Way.</p>
+      </div>
+    </section>
+
+    <section class="every-section wrap">
+      <p class="eyebrow">iPhone, iPad and iPhone Duo</p>
+      <h2>On every screen.</h2>
+      <p class="lede">Designed for each device, with your cities in sync over iCloud.</p>
+      <div class="every"><div class="devices-row">
+        <Image style="--w: 3.19" src={iphoneForecast} alt="The forecast for New York on iPhone" />
+        <Image class="ipad" style="--w: 11.37" src={ipadForecast} alt="The forecast for New York beside the globe on iPad" />
+        <Image style="--w: 3.43" src={duoForecast} alt="The forecast for New York on iPhone Duo, closed" />
+      </div></div>
+    </section>
+
+    <section class="reviews wrap">
+      <header>
+        <h2>A favorite, year after year.</h2>
+        <p class="lede">{rating} stars from more than {(thousands * 1000).toLocaleString('en-US')} ratings on the App Store.</p>
+      </header>
+      <div class="press">
+        {press.map(p => <blockquote>“{p.quote}”<cite>{p.source}</cite></blockquote>)}
+      </div>
+      <div class="voices">
+        {reviews.map(r => (
+          <figure>
+            <blockquote>“{r.quote}”</blockquote>
+            <figcaption><span class="stars" aria-label="5 stars">★★★★★</span>App Store review, {r.year}</figcaption>
+          </figure>
+        ))}
+      </div>
+    </section>
+
+    <section class="wrap">
+      <div class="buy">
+        <div class="copy">
+          <h2>One purchase for iPhone and iPad.</h2>
+          <p>{price}, once, with no subscription. Private by design: no accounts, no ads, no tracking, and we never sell your data.</p>
+          <div class="badges">
+            <a href={IOS_URL}><Image src={badge} alt="Download on the App Store" /></a>
+            <a class="qr" href={IOS_URL}><Image src={qr} alt="QR code for Living Earth on the App Store" /><span>Scan to get it<br />on the App Store</span></a>
+          </div>
+        </div>
+        <Image class="phone" src={iphoneClouds} alt="" />
+      </div>
+    </section>
+  </main>
+
+  <div class="preview glass dim" role="group" aria-label="Preview the sky (review control)">
+    <span>Preview</span>
+    <button data-mode="now" aria-pressed="true">Now</button>
+    <button data-mode="night" aria-pressed="false">Night</button>
+    <button data-mode="dawn" aria-pressed="false">Dawn</button>
+    <button data-mode="day" aria-pressed="false">Day</button>
+    <button data-mode="dusk" aria-pressed="false">Dusk</button>
+  </div>
+
+  <script is:inline>
+    const words = { night: 'night', dawn: 'dawn', day: 'daytime', dusk: 'dusk' };
+    let mode = 'now';
+
+    function paint() {
+      const phase = mode === 'now' ? LE.phaseAt(new Date()) : mode;
+      document.documentElement.dataset.sky = phase;
+      document.querySelector('[data-word]').textContent = words[phase];
+      if (!document.querySelector('[data-device]').src.includes(`-${phase}-`)) LE.paintHero(phase);
+    }
+    // ?preview shows a control to see every sky without waiting for it
+    if (new URLSearchParams(location.search).has('preview')) document.body.classList.add('previewing');
+    document.querySelectorAll('[data-mode]').forEach(b => b.addEventListener('click', () => {
+      mode = b.dataset.mode;
+      document.querySelectorAll('[data-mode]').forEach(x => x.setAttribute('aria-pressed', x === b));
+      paint();
+    }));
+    // Now, and again at the top of every minute
+    paint();
+    setTimeout(() => { paint(); setInterval(paint, 60000); }, 60000 - Date.now() % 60000);
+  </script>
 </Layout>
+
+<style is:global>
+  /* The page takes the colour of the visitor's sky, the way Tide Guide's palette "changes with the sky".
+     Registered so the gradients ease from one phase to the next instead of jumping. */
+  @property --sky-top { syntax: '<color>'; inherits: true; initial-value: #02030a; }
+  @property --sky-mid { syntax: '<color>'; inherits: true; initial-value: #07112a; }
+  @property --sky-low { syntax: '<color>'; inherits: true; initial-value: #0e1f44; }
+  @property --deep { syntax: '<color>'; inherits: true; initial-value: #03060f; }
+  @property --word-a { syntax: '<color>'; inherits: true; initial-value: #64D2FF; }
+  @property --word-b { syntax: '<color>'; inherits: true; initial-value: #5E5CE6; }
+
+  :root { transition: --sky-top 1.4s var(--ease), --sky-mid 1.4s var(--ease), --sky-low 1.4s var(--ease), --deep 1.4s var(--ease), --word-a 1.4s, --word-b 1.4s; }
+  /* The text sits in the mid band, so each phase keeps that band dark enough for white text;
+     the horizon colour comes in only below the buttons. */
+  :root[data-sky="night"] { --sky-top: #02030a; --sky-mid: #091634; --sky-low: #1d3a6e; --deep: #03060f; --word-a: #64D2FF; --word-b: #8e8cff; }
+  :root[data-sky="dawn"]  { --sky-top: #0b1233; --sky-mid: #2c2c63; --sky-low: #d9887a; --deep: #0b0f26; --word-a: #ffc3a0; --word-b: #ff8fb1; }
+  :root[data-sky="day"]   { --sky-top: #07397a; --sky-mid: #135aa8; --sky-low: #5fa6e3; --deep: #07264a; --word-a: #fff1a8; --word-b: #FFD60A; }
+  :root[data-sky="dusk"]  { --sky-top: #100b2e; --sky-mid: #3a2160; --sky-low: #f0804a; --deep: #0f0a24; --word-a: #FF9F0A; --word-b: #ff5f8a; }
+
+  body { background: var(--deep); }
+  .wrap { width: min(1120px, 100% - 2 * clamp(16px, 4vw, 40px)); margin-inline: auto; }
+  h1, h2, .sub, .lede { text-wrap: balance; }
+  p { text-wrap: pretty; }
+
+  /* Devices are Apple's bezels at their true relative size: each image is as many inches wide
+     as the device, and --in is the page's pixels per inch. No shadows, no overlap, nothing
+     cropped, as Apple's marketing guidelines ask. */
+  .devices-row { display: flex; align-items: flex-end; justify-content: center; flex-wrap: wrap; gap: calc(var(--in) * .7); }
+  .devices-row img { width: calc(var(--in) * var(--w)); height: auto; }
+  .devices-row img:not([src]) { display: none; }
+  .devices-row noscript { display: contents; }
+
+  /* Hero: a panel of sky with rounded lower corners. The horizon glow rises a fixed 220px from
+     the panel's bottom edge, whatever its height, so it starts just under the buttons and the
+     text above it stays on the dark sky. */
+  .sky-panel { padding: 110px 0 96px; border-radius: 0 0 44px 44px; text-align: center;
+    background: linear-gradient(0deg, var(--sky-low), var(--sky-mid) 220px, var(--sky-top)); }
+  /* Two devices sized by their container, never the window, so they never wrap */
+  .hero-devices { container-type: inline-size; }
+  .hero-devices .devices-row { --in: min(64px, 100cqw / 15.4); flex-wrap: nowrap; }
+  .sky-panel h1 { margin-top: 56px; font-size: clamp(40px, 6vw, 80px); font-weight: 700; line-height: 1.02; letter-spacing: -0.04em; }
+  .sky-panel h1 em { font-style: normal; background: linear-gradient(90deg, var(--word-a), var(--word-b)); -webkit-background-clip: text; background-clip: text; color: transparent; }
+  .sky-panel .sub { max-width: 44ch; margin: 18px auto 0; font-size: 21px; line-height: 1.4; color: rgba(255,255,255,.86); }
+  .sky-panel .laurels { margin-top: 28px; }
+  .sky-panel .laurel span { color: rgba(255,255,255,.75); }
+  .sky-panel .badges { justify-content: center; margin-top: 22px; }
+  .sky-panel .qr span { color: rgba(255,255,255,.75); }
+
+  /* One reason per section, as Binge lays them out: a label, a short headline, two sentences
+     and one picture, alternating sides. */
+  .eyebrow { font-size: 13px; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; color: var(--word-a); }
+  .feature h2, .band h2, .every-section h2, .reviews h2 { margin-top: 10px; font-size: clamp(34px, 4.4vw, 54px); font-weight: 700; line-height: 1.04; letter-spacing: -0.035em; }
+  .lede { margin-top: 16px; font-size: 19px; line-height: 1.5; color: var(--secondary); max-width: 40ch; }
+  .feature { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(32px, 6vw, 80px); align-items: center; padding-top: clamp(90px, 13vh, 150px); }
+  .feature.flip .media { order: 2; }
+  .feature .media { display: grid; place-items: center; }
+  .feature .media img { max-height: 560px; width: auto; max-width: 100%; }
+  .feature .media img.shot { width: 100%; max-height: none; border-radius: 26px; }
+  .band { padding-top: clamp(90px, 13vh, 150px); text-align: center; }
+  .band .lede { margin-inline: auto; max-width: 52ch; }
+  .band .film { margin-top: 36px; border-radius: 26px; overflow: hidden; aspect-ratio: 3840 / 1646; background: #000; }
+  .band video { width: 100%; height: 100%; object-fit: cover; display: block; }
+
+  /* Every screen: the same forecast on each device, one scale, standing on one line, sized by
+     their container so they never wrap */
+  .every-section { padding-top: clamp(90px, 13vh, 150px); text-align: center; }
+  .every-section .lede { margin-inline: auto; }
+  .every { margin-top: 44px; container-type: inline-size; }
+  .every .devices-row { --in: min(52px, 100cqw / 19.4); flex-wrap: nowrap; }
+
+  /* Reviews: the press, then the App Store, quoted as written */
+  .reviews { padding-top: clamp(90px, 13vh, 150px); }
+  .reviews header { text-align: center; }
+  .reviews .lede { margin-inline: auto; }
+  .press { display: grid; grid-template-columns: repeat(4, 1fr); gap: 28px; margin-top: 44px; }
+  .press blockquote { margin: 0; font-size: 18px; line-height: 1.45; }
+  .press cite { display: block; margin-top: 10px; font-style: normal; font-size: 14px; font-weight: 600; color: var(--word-a); }
+  .voices { columns: 3 280px; column-gap: 18px; margin-top: 40px; }
+  .voices figure { break-inside: avoid; margin: 0 0 18px; padding: 22px 22px 18px; border-radius: 22px; background: rgba(255,255,255,.05); box-shadow: inset 0 0 0 0.5px var(--hairline); }
+  .voices blockquote { margin: 0; font-size: 17px; line-height: 1.45; }
+  .voices figcaption { margin-top: 10px; font-size: 13px; color: var(--secondary); }
+  .voices .stars { color: var(--accent-yellow); letter-spacing: 1px; margin-right: 6px; }
+
+  .buy { margin-top: clamp(90px, 13vh, 150px); border-radius: 36px; overflow: hidden; display: grid; grid-template-columns: 1.3fr 1fr; align-items: center;
+    background: linear-gradient(135deg, var(--sky-mid), var(--sky-top) 70%); }
+  .buy .copy { padding: clamp(32px, 5vw, 64px); }
+  .buy h2 { font-size: clamp(32px, 4vw, 52px); font-weight: 700; letter-spacing: -0.035em; line-height: 1.04; }
+  .buy p { margin-top: 12px; color: rgba(255,255,255,.8); max-width: 42ch; }
+  .buy .badges { margin-top: 26px; }
+  .buy .qr span { color: rgba(255,255,255,.75); }
+  .buy .phone { justify-self: center; width: 200px; margin: 40px 0; }
+
+  .footer { margin-top: clamp(90px, 13vh, 150px); }
+
+  /* The ?preview review control */
+  .preview { position: fixed; left: 50%; bottom: 18px; translate: -50% 0; z-index: 20; display: none; align-items: center; gap: 4px; padding: 5px 5px 5px 14px; border-radius: 999px; font-size: 13px; }
+  .previewing .preview { display: flex; }
+  .preview span { color: rgba(255,255,255,.7); margin-right: 6px; }
+  .preview button { font: inherit; color: #fff; background: none; border: 0; padding: 7px 12px; border-radius: 999px; cursor: pointer; }
+  .preview button[aria-pressed="true"] { background: rgba(255,255,255,.92); color: #000; font-weight: 600; }
+
+  @media (max-width: 820px) {
+    .feature, .buy { grid-template-columns: 1fr; }
+    .feature.flip .media { order: 0; }
+    .feature .media img { max-height: 480px; }
+    .press { grid-template-columns: 1fr 1fr; }
+    .preview span { display: none; }
+  }
+  /* On a phone the hero shows the iPhone alone, larger */
+  @media (max-width: 600px) {
+    .hero-devices .devices-row { --in: min(64px, 100cqw / 5.2); }
+    .hero-devices .ipad { display: none; }
+    .every .devices-row { --in: 100cqw / 11.4; flex-wrap: wrap; }
+    .every .ipad { order: -1; }  /* the iPad on its own line first, the phones paired below */
+    .press { grid-template-columns: 1fr; }
+  }
+</style>
