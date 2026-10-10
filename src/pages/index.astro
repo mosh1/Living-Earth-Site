@@ -128,14 +128,14 @@ const jsonLd = {
     <section class="sky-panel">
       <!-- The visitor's region in their own light, the whole Earth on iPhone and up close on iPad
            at the same instant: set as the images are parsed, so only the visitor's set loads;
-           without script, the Americas west by day. -->
+           without script, the Americas west at night, matching the headline and sky the page starts with. -->
       <div class="wrap hero-devices"><div class="devices-row">
         <img class="iphone" style="--w: 3.19" width="383" height="783" data-device="iphone" alt="" />
         <img class="ipad" style="--w: 11.37" width="1364" height="1045" data-device="ipad" data-view="zoom" alt="" />
         <script is:inline>LE.paintHero(LE.phaseAt(new Date()))</script>
         <noscript>
-          <img class="iphone" style="--w: 3.19" width="383" height="783" src="/hero/americas-west-day-iphone.webp" alt="Living Earth on iPhone: the Earth, San Francisco at midday" />
-          <img class="ipad" style="--w: 11.37" width="1364" height="1045" src="/hero/americas-west-day-zoom-ipad.webp" alt="Living Earth on iPad: San Francisco's clouds up close at midday" />
+          <img class="iphone" style="--w: 3.19" width="383" height="783" src="/hero/americas-west-night-iphone.webp" alt="Living Earth on iPhone: the Earth, San Francisco at night" />
+          <img class="ipad" style="--w: 11.37" width="1364" height="1045" src="/hero/americas-west-night-zoom-ipad.webp" alt="Living Earth on iPad: San Francisco's clouds up close at night" />
         </noscript>
       </div></div>
       <div class="wrap">
@@ -307,7 +307,10 @@ const jsonLd = {
   .devices-row { display: flex; align-items: flex-end; justify-content: center; flex-wrap: wrap; gap: calc(var(--in) * .7); }
   .devices-row img { width: calc(var(--in) * var(--w)); height: auto; }
   .devices-row img:not([src]) { display: none; }
-  .devices-row noscript { display: contents; }
+  /* Without script, the fallback's images stand in the row like the devices they replace.
+     Only then: with script on, noscript holds its markup as raw text, which Chrome hides only by
+     giving noscript no box, and display: contents would print that text beside the hero. */
+  @media (scripting: none) { .devices-row noscript { display: contents; } }
 
   /* Hero: a panel of sky with rounded lower corners. The horizon glow rises a fixed 220px from
      the panel's bottom edge, whatever its height, so it starts just under the buttons and the
