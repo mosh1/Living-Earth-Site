@@ -1,7 +1,7 @@
 ---
 import { Image } from 'astro:assets';
 import Layout from '../layouts/Layout.astro';
-import { IOS_URL, lookup } from '../appstore';
+import { IOS_URL, lookup, worldRating } from '../appstore';
 import { reviews } from '../reviews';
 // IANA time zone -> [lat, lon] of its city, from tzdata's zone.tab
 import zones from '../zones.js?raw';
@@ -24,12 +24,17 @@ import filmPoster from '../assets/home/dawn-over-europe.jpg';
 // public/hero/ holds the hero's regions, picked in the browser, so they are WebP already
 // (cwebp -q 80 -m 6); the rest go through Astro's image pipeline.
 
-const ios = await lookup(379869627);
-// Fallbacks are the App Store's values on 9 Oct 2026, used only if the lookup fails during a build.
-const rating = (ios?.averageUserRating ?? 4.77).toFixed(1);
-const ratingCount = ios?.userRatingCount ?? 15534;
+const [ios, world] = await Promise.all([lookup(379869627), worldRating(379869627)]);
+// The rating across every storefront; if that lookup fails, the US store's, worded as such.
+// Fallbacks are the US App Store's values on 9 Oct 2026, used only if both lookups fail.
+const rating = (world?.average ?? ios?.averageUserRating ?? 4.77).toFixed(1);
+const ratingCount = world?.count ?? ios?.userRatingCount ?? 15534;
+const where = world ? 'on the App Store worldwide' : 'on the App Store';
 const price = ios?.formattedPrice ?? '$5.99';
 const thousands = Math.floor(ratingCount / 1000);
+// The count as the App Store abbreviates it (15,534 is "16K"); spelled out, the reviews line
+// rounds down so it never overstates.
+const ratingsShort = new Intl.NumberFormat('en-US', { notation: 'compact' }).format(ratingCount);
 
 const press = [
   { quote: 'In a sea of more complicated and ambitious apps, Living Earth is beautifully simple.', source: 'The New York Times' },
@@ -141,7 +146,7 @@ const jsonLd = {
       <div class="wrap">
         <h1>It’s <em data-word>night</em> where you are.</h1>
         <p class="sub">See our planet as it looks from space right now, with live clouds, storms and the weather in the places you care about.</p>
-        <div class="laurels"><div class="laurel"><strong>{rating} ★</strong><span>{thousands}K ratings on the App Store</span></div></div>
+        <div class="laurels"><div class="laurel"><strong>{rating} ★</strong><span>{ratingsShort} {world ? 'App Store ratings worldwide' : 'ratings on the App Store'}</span></div></div>
         <div class="badges">
           <a href={IOS_URL}><Image src={badge} alt="Download on the App Store" loading="eager" /></a>
           <!-- Whoever scans may hold an iPad or another phone; "on the App Store" is Apple's wording. -->
@@ -216,7 +221,7 @@ const jsonLd = {
     <section class="reviews wrap">
       <header>
         <h2>A favorite, year after year.</h2>
-        <p class="lede">{rating} stars from more than {(thousands * 1000).toLocaleString('en-US')} ratings on the App Store.</p>
+        <p class="lede">{rating} stars from more than {(thousands * 1000).toLocaleString('en-US')} ratings {where}.</p>
       </header>
       <div class="press">
         {press.map(p => <blockquote>“{p.quote}”<cite>{p.source}</cite></blockquote>)}
