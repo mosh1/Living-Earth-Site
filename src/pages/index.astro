@@ -221,14 +221,23 @@ const jsonLd = {
       <div class="press">
         {press.map(p => <blockquote>“{p.quote}”<cite>{p.source}</cite></blockquote>)}
       </div>
-      <div class="voices">
-        {reviews.map(r => (
-          <figure>
-            <blockquote>“{r.quote}”</blockquote>
-            <figcaption><span class="stars" aria-label="5 stars">★★★★★</span>App Store review, {r.year}</figcaption>
-          </figure>
-        ))}
+      <!-- A strip that drifts left, two cards to a column, until the visitor scrolls it, or
+           pauses it with the button. The reviews appear twice so the drift loops without a jump;
+           the second set is hidden from VoiceOver. -->
+      <div class="voices" data-voices role="region" aria-label="App Store reviews" tabindex="0">
+        <div class="voices-track">
+          {[...reviews, ...reviews].map((r, i) => (
+            <figure aria-hidden={i >= reviews.length ? 'true' : undefined} data-loop-start={i === reviews.length ? '' : undefined}>
+              <blockquote>“{r.quote}”</blockquote>
+              <figcaption><span class="stars" aria-label="5 stars">★★★★★</span>App Store review, {r.year}</figcaption>
+            </figure>
+          ))}
+        </div>
       </div>
+      <button class="voices-toggle glass" data-voices-toggle hidden aria-label="Pause the reviews">
+        <svg class="pause" viewBox="0 0 16 16" aria-hidden="true"><rect x="3.5" y="2.5" width="3" height="11" rx="1" /><rect x="9.5" y="2.5" width="3" height="11" rx="1" /></svg>
+        <svg class="play" viewBox="0 0 16 16" aria-hidden="true"><path d="M4.5 2.9v10.2a.9.9 0 0 0 1.37.77l8.3-5.1a.9.9 0 0 0 0-1.54l-8.3-5.1A.9.9 0 0 0 4.5 2.9Z" /></svg>
+      </button>
     </section>
 
     <section class="wrap">
@@ -275,6 +284,54 @@ const jsonLd = {
     // Now, and again at the top of every minute
     paint();
     setTimeout(() => { paint(); setInterval(paint, 60000); }, 60000 - Date.now() % 60000);
+
+    // The reviews strip drifts left at a reading pace while it is on screen, pausing under the
+    // pointer. Once the visitor scrolls it, clicks or focuses it, or presses pause, the drift
+    // stops where it is and the strip is a plain scroller; play drifts on from there.
+    (() => {
+      const strip = document.querySelector('[data-voices]'), track = strip.firstElementChild;
+      const toggle = document.querySelector('[data-voices-toggle]'), SPEED = 25;  // px a second
+      // One set of reviews: from the first card to the first card of the copy
+      const loop = () => strip.querySelector('[data-loop-start]').offsetLeft - track.firstElementChild.offsetLeft;
+      const measure = () => {
+        strip.style.setProperty('--drift', loop() + 'px');
+        strip.style.setProperty('--drift-time', loop() / SPEED + 's');
+      };
+      const set = drifting => {
+        strip.classList.toggle('drifting', drifting);
+        toggle.classList.toggle('stopped', !drifting);
+        toggle.setAttribute('aria-label', drifting ? 'Pause the reviews' : 'Play the reviews');
+      };
+      const stop = () => {
+        if (!strip.classList.contains('drifting')) return;
+        const x = -new DOMMatrix(getComputedStyle(track).transform).m41;
+        set(false);
+        strip.scrollLeft += x;  // the drift's offset becomes the scroll position, so nothing moves
+      };
+      const play = () => {
+        const x = strip.scrollLeft % loop();
+        strip.scrollLeft = 0;
+        track.style.animationDelay = -x / SPEED + 's';  // start the drift where the strip stands
+        set(true);
+      };
+      measure();
+      addEventListener('resize', measure);
+      new IntersectionObserver(([e]) => strip.classList.toggle('offscreen', !e.isIntersecting)).observe(strip);
+      // A finger landing on the strip to scroll the page past it is not taking over; only a
+      // sideways swipe is. A mouse press, a tap or keyboard focus is.
+      let start;
+      strip.addEventListener('pointerdown', e => { if (e.pointerType !== 'touch') stop(); });
+      strip.addEventListener('touchstart', e => { start = [e.touches[0].clientX, e.touches[0].clientY]; }, { passive: true });
+      strip.addEventListener('touchmove', e => {
+        const dx = Math.abs(e.touches[0].clientX - start[0]), dy = Math.abs(e.touches[0].clientY - start[1]);
+        if (dx > 8 && dx > dy) stop();
+      }, { passive: true });
+      strip.addEventListener('focusin', stop);
+      strip.addEventListener('wheel', e => { if (Math.abs(e.deltaX) > Math.abs(e.deltaY)) stop(); }, { passive: true });
+      toggle.addEventListener('click', () => strip.classList.contains('drifting') ? stop() : play());
+      toggle.hidden = false;
+      set(true);
+    })();
   </script>
 </Layout>
 
@@ -357,8 +414,24 @@ const jsonLd = {
   .press { display: grid; grid-template-columns: repeat(4, 1fr); gap: 28px; margin-top: 44px; }
   .press blockquote { margin: 0; font-size: 18px; line-height: 1.45; }
   .press cite { display: block; margin-top: 10px; font-style: normal; font-size: 14px; font-weight: 600; color: var(--word-a); }
-  .voices { columns: 3 280px; column-gap: 18px; margin-top: 40px; }
-  .voices figure { break-inside: avoid; margin: 0 0 18px; padding: 22px 22px 18px; border-radius: 22px; background: rgba(255,255,255,.05); box-shadow: inset 0 0 0 0.5px var(--hairline); }
+  /* The reviews strip: two cards to a column, each row as tall as its longest card. It scrolls
+     natively (swipe, trackpad, arrow keys); with script it also drifts left, a transform the
+     script hands over to the scroll position when the visitor takes over (see the end of the
+     page). Its edges fade so it reads as continuing. */
+  .voices { margin-top: 40px; overflow-x: auto; scrollbar-width: none; overscroll-behavior-x: contain;
+    -webkit-mask-image: linear-gradient(90deg, transparent, #000 5%, #000 95%, transparent); mask-image: linear-gradient(90deg, transparent, #000 5%, #000 95%, transparent); }
+  .voices::-webkit-scrollbar { display: none; }
+  .voices:focus-visible { outline: 2px solid var(--word-a); outline-offset: 4px; border-radius: 22px; }
+  .voices-track { display: grid; grid-auto-flow: column; grid-template-rows: auto auto; grid-auto-columns: 320px; gap: 18px; width: max-content; padding-inline: 5%; }
+  .voices.drifting .voices-track { animation: voices-drift var(--drift-time) linear infinite; }
+  .voices.drifting:hover .voices-track, .voices.offscreen .voices-track { animation-play-state: paused; }
+  @keyframes voices-drift { to { transform: translateX(calc(-1 * var(--drift))); } }
+  .voices figure { margin: 0; padding: 22px 22px 18px; border-radius: 22px; background: rgba(255,255,255,.05); box-shadow: inset 0 0 0 0.5px var(--hairline); }
+  .voices-toggle { display: grid; place-items: center; width: 36px; height: 36px; margin: 14px 0 0 auto; padding: 0; border: 0; border-radius: 50%; color: #fff; cursor: pointer; }
+  .voices-toggle[hidden] { display: none; }
+  .voices-toggle svg { width: 14px; height: 14px; fill: currentColor; }
+  .voices-toggle .play, .voices-toggle.stopped .pause { display: none; }
+  .voices-toggle.stopped .play { display: block; }
   .voices blockquote { margin: 0; font-size: 17px; line-height: 1.45; }
   .voices figcaption { margin-top: 10px; font-size: 13px; color: var(--secondary); }
   .voices .stars { color: var(--accent-yellow); letter-spacing: 1px; margin-right: 6px; }
@@ -395,5 +468,6 @@ const jsonLd = {
     .every .devices-row { --in: 100cqw / 11.4; flex-wrap: wrap; }
     .every .ipad { order: -1; }  /* the iPad on its own line first, the phones paired below */
     .press { grid-template-columns: 1fr; }
+    .voices-track { grid-auto-columns: 270px; gap: 14px; }
   }
 </style>
