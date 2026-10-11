@@ -398,8 +398,11 @@ const jsonLd = {
   .feature { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(32px, 6vw, 80px); align-items: center; padding-top: clamp(90px, 13vh, 150px); }
   .feature.flip .media { order: 2; }
   .feature .media { display: grid; place-items: center; }
-  .feature .media img { max-height: 560px; width: auto; max-width: 100%; }
-  .feature .media img.shot { width: 100%; max-height: none; border-radius: 26px; }
+  /* Full column width, so the width and height attributes' ratio sizes the box before a lazy
+     image arrives (with an auto width an unloaded image has no size and collapses to 0 x 0);
+     where max-height wins, contain draws the image at its own proportions, centred. */
+  .feature .media img { width: 100%; max-height: 560px; object-fit: contain; }
+  .feature .media img.shot { width: 100%; max-height: none; border-radius: 26px; object-fit: fill; }
   .band { padding-top: clamp(90px, 13vh, 150px); text-align: center; }
   .band .lede { margin-inline: auto; max-width: 52ch; }
   .band .film { margin-top: 36px; border-radius: 26px; overflow: hidden; aspect-ratio: 3840 / 1646; background: #000; }
