@@ -37,7 +37,7 @@ Updated October 2026, for Living Earth 4.50. Everything here is free to use in c
 
 **Long.** Living Earth shows our planet in motion, with satellite clouds refreshed every hour, sunrise sweeping across the globe and city lights coming on as darkness falls. Explore mountains, rivers and coastlines, with borders and place names appearing as you zoom in, or search for any place on Earth.
 
-Living Earth is also a world clock and weather app. Save cities to keep track of the time and weather at home or abroad, with hourly and 10-day forecasts. Explore maps of temperature, humidity and wind, and follow hurricanes and typhoons with alerts when a storm forms or changes strength.
+Living Earth is also a world clock and weather app. Save cities to keep track of the time and weather at home or abroad, with hourly and 10-day forecasts. Explore maps of temperature, humidity and wind, and follow hurricanes and typhoons with notifications when a storm forms or changes strength.
 
 The app tracks solar and lunar eclipses and includes a Wake Alarm with repeat days, snooze and a choice of gentle tones.
 
@@ -58,10 +58,10 @@ Living Earth 4.50 is a free update for existing users, and the first version for
 
 - **Real clouds, every hour.** Images from weather satellites cover the whole globe, in near real time.
 - **Day and night, live.** The sunrise sweeps the planet as it happens, and city lights come on as darkness falls.
-- **Hurricanes and typhoons.** Tropical storms anywhere in the world, with each one's category, winds, and direction and speed of travel. An alert arrives when a new one forms or changes strength.
+- **Hurricanes and typhoons.** Tropical storms anywhere in the world, with each one's category, winds, and direction and speed of travel. A notification arrives when a new one forms or changes strength.
 - **A world clock with a view.** The time and weather in each of your cities at a glance, with hourly and 10-day forecasts.
 - **From orbit to coastline.** Zoom in to see clouds, mountains and rivers, with borders and place names appearing as you get closer.
-- **The Moon and eclipses.** The Moon's shadow racing across the Earth during a solar eclipse, the Moon turning red in a lunar one, and an alert when a total eclipse begins. The Moon shows its current phase against the stars and the Milky Way.
+- **The Moon and eclipses.** The Moon's shadow racing across the Earth during a solar eclipse, the Moon turning red in a lunar one, and a notification when a total eclipse begins. The Moon shows its current phase against the stars and the Milky Way.
 
 ## What people say
 
