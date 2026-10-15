@@ -50,7 +50,7 @@ A single $5.99 purchase covers iPhone and iPad, with no subscription, ads or tra
 
 Living Earth 4.50 is a free update for existing users, and the first version for iPhone Duo.
 
-- **iPhone Duo.** Unfold it and the Earth spreads across the inner display. When folded, the cover screen shows the globe, clock and weather.
+- **iPhone Duo.** Unfold it and the Earth spreads across the inner display. Close it to see the globe, clock and weather on the cover screen. Fold it into a tent for a bedside alarm clock. Wake Alarms use Apple's AlarmKit, which lights the inner display with a soft glow when an alarm rings.
 - **A more detailed globe.** Zoom in to see sharper clouds, terrain and city lights.
 
 <img src="/press/living-earth-ipad-california.jpg" width="1440" height="1080" loading="lazy" alt="Living Earth on iPad over California at dusk, with clouds off the coast, the Sierra Nevada and the weather in western cities">
