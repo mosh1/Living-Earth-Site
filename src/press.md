@@ -18,8 +18,7 @@ Updated October 2026, for Living Earth 4.50. Everything here is free to use in c
 | | |
 |---|---|
 | App | Living Earth - Clock & Weather |
-| Developer | Radiantlabs, LLC, San Francisco |
-| Founder | Moshen Chan |
+| Developer | Moshen Chan of Radiantlabs, LLC, San Francisco |
 | On the App Store | Since 2010 |
 | Current version | 4.50 |
 | Devices | iPhone, iPad and iPhone Duo, with iOS 18.5 or later |
