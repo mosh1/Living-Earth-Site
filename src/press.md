@@ -1,6 +1,6 @@
 # Living Earth press kit
 
-Living Earth shows our planet as it looks from space right now, with live clouds, storms and the weather in the places you care about.
+Living Earth shows our planet as it looks from space, with live clouds and storms, plus the time and weather in the places you care about.
 
 <img src="/press/living-earth-iphone-duo.jpg" width="1440" height="701" alt="Living Earth on iPhone Duo: closed, the cover screen shows the clock, the globe and the weather; open, the inner display shows clouds over California with city weather">
 
@@ -33,7 +33,7 @@ Updated October 2026, for Living Earth 4.50. Everything here is free to use in c
 
 ## About Living Earth
 
-**In one sentence.** Living Earth shows our planet as it looks from space right now, with live clouds, storms and the weather in the places you care about.
+**In one sentence.** Living Earth shows our planet as it looks from space, with live clouds and storms, plus the time and weather in the places you care about.
 
 **Short.** Living Earth is a 3D globe of our planet, with real satellite clouds refreshed every hour. Watch day turn to night across the globe and follow hurricanes and typhoons around the world. Add your cities to see the local time and weather, with hourly and 10-day forecasts.
 
