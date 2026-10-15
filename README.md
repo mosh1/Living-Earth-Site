@@ -27,7 +27,7 @@ to fixed ones. The press kit's fact sheet is the exception: its numbers are writ
 
 - `src/press.md` is the press kit's text. `/press/` shows it, and the ZIP carries it as its
   README, so rebuild the ZIP after editing it.
-- `public/LivingEarthPressKit.zip` and the videos in `public/press/` are built by
+- `public/LivingEarthPressKit.zip` and the videos and images in `public/press/` are built by
   `website/tools/press-kit.py` in the private livingearth-design repo, which writes them here.
 - The home page's images (`src/assets/home/`), `src/zones.js` and `public/og-image.jpg` are
   copies from `website/assets/img/` in that repo, most of them built by
