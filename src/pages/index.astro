@@ -10,7 +10,7 @@ import qr from '../assets/home/qr-app-store.svg';
 import ipadClouds from '../assets/home/ipad-02-clouds.png';
 import duoStorms from '../assets/home/duo-closed-03-storms.png';
 import duoCities from '../assets/home/duo-open-06-cities.png';
-import zoomLabels from '../assets/home/zoom-labels.jpg';
+import ipadMexico from '../assets/home/ipad-mexico.png';
 import iphoneEclipse from '../assets/home/iphone-07-eclipse.png';
 import iphoneForecast from '../assets/home/iphone-04-forecast.png';
 import ipadForecast from '../assets/home/ipad-04-forecast.png';
@@ -190,7 +190,7 @@ const jsonLd = {
     </section>
 
     <section class="feature flip wrap">
-      <div class="media"><Image class="shot" src={zoomLabels} width={1200} alt="The Nile and the Red Sea up close, with country and city names" /></div>
+      <div class="media"><Image src={ipadMexico} alt="Mexico and Hurricane Trudy on iPad, with borders, country names and the weather in Mexican cities" /></div>
       <div>
         <p class="eyebrow">Up close</p>
         <h2>From orbit to coastline.</h2>
@@ -402,7 +402,6 @@ const jsonLd = {
      image arrives (with an auto width an unloaded image has no size and collapses to 0 x 0);
      where max-height wins, contain draws the image at its own proportions, centred. */
   .feature .media img { width: 100%; max-height: 560px; object-fit: contain; }
-  .feature .media img.shot { width: 100%; max-height: none; border-radius: 26px; object-fit: fill; }
   .band { padding-top: clamp(90px, 13vh, 150px); text-align: center; }
   .band .lede { margin-inline: auto; max-width: 52ch; }
   .band .film { margin-top: 36px; border-radius: 26px; overflow: hidden; aspect-ratio: 3840 / 1646; background: #000; }
