@@ -85,7 +85,7 @@ Living Earth 4.50 is a free update for existing users, and the first version for
 
 ## Contact
 
-For a TestFlight invite, a promo code, an interview or questions about Living Earth, email me at [contact@radiantlabs.io](mailto:contact@radiantlabs.io). You can also reach me on X at [@livingearthapp](https://x.com/livingearthapp).
+For a TestFlight invite, a promo code, an interview or questions about Living Earth, email me at [contact@radiantlabs.io](mailto:contact@radiantlabs.io). You can also reach me on X at [@paranoidroid](https://x.com/paranoidroid), or follow the app at [@livingearthapp](https://x.com/livingearthapp).
 
 ## In the ZIP
 
