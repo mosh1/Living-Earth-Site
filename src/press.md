@@ -37,7 +37,7 @@ Living Earth shows our planet in motion, with satellite clouds refreshed every h
 
 It doubles as a world clock and weather app, with the time and weather in each saved city, plus hourly and 10-day forecasts. Maps show temperature, humidity and wind, and the app follows hurricanes and typhoons around the world, with a notification when one forms or changes strength.
 
-Living Earth also tracks solar and lunar eclipses and includes a Wake Alarm with repeat days, snooze and a choice of gentle tones. A single $5.99 purchase in the US covers iPhone and iPad, with no subscription, ads or tracking.
+Living Earth also tracks solar and lunar eclipses and works as a bedside clock with a Wake Alarm. A single $5.99 purchase in the US covers iPhone and iPad, with no subscription, ads or tracking.
 
 ## About the developer
 
