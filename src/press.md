@@ -33,17 +33,11 @@ Updated October 2026, for Living Earth 4.50. Everything here is free to use in c
 
 ## About Living Earth
 
-**In one sentence.** Living Earth shows our planet as it looks from space, with live clouds and storms, plus the time and weather in the places you care about.
+Living Earth shows our planet in motion, with satellite clouds refreshed every hour, sunrise sweeping across the globe and city lights coming on as darkness falls.
 
-**Short.** Living Earth is a 3D globe of our planet, with real satellite clouds refreshed every hour. Watch day turn to night across the globe and follow hurricanes and typhoons around the world. Add your cities to see the local time and weather, with hourly and 10-day forecasts.
+It doubles as a world clock and weather app, with the time and weather in each saved city, plus hourly and 10-day forecasts. Maps show temperature, humidity and wind, and the app follows hurricanes and typhoons around the world, with a notification when one forms or changes strength.
 
-**Long.** Living Earth shows our planet in motion, with satellite clouds refreshed every hour, sunrise sweeping across the globe and city lights coming on as darkness falls. Explore mountains, rivers and coastlines, with borders and place names appearing as you zoom in, or search for any place on Earth.
-
-Living Earth is also a world clock and weather app. Save cities to keep track of the time and weather at home or abroad, with hourly and 10-day forecasts. Explore maps of temperature, humidity and wind, and follow hurricanes and typhoons with notifications when a storm forms or changes strength.
-
-The app tracks solar and lunar eclipses and includes a Wake Alarm with repeat days, snooze and a choice of gentle tones.
-
-A single $5.99 purchase covers iPhone and iPad, with no subscription, ads or tracking.
+Living Earth also tracks solar and lunar eclipses and includes a Wake Alarm with repeat days, snooze and a choice of gentle tones. A single $5.99 purchase in the US covers iPhone and iPad, with no subscription, ads or tracking.
 
 ## What's new in 4.50
 
