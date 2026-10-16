@@ -62,12 +62,12 @@ Living Earth 4.50 is a free update for existing users, and the first version for
 
 ## Features
 
-- **Real clouds, every hour.** Images from weather satellites cover the whole globe, in near real time.
-- **Day and night, live.** The sunrise sweeps the planet as it happens, and city lights come on as darkness falls.
-- **Hurricanes and typhoons.** Tropical storms anywhere in the world, with each one's category, winds, and direction and speed of travel. A notification arrives when a new one forms or changes strength.
-- **A world clock with a view.** The time and weather in each of your cities at a glance, with hourly and 10-day forecasts.
-- **From orbit to coastline.** Zoom in to see clouds, mountains and rivers, with borders and place names appearing as you get closer.
-- **The Moon and eclipses.** The Moon's shadow racing across the Earth during a solar eclipse, the Moon turning red in a lunar one, and a notification when a total eclipse begins. The Moon shows its current phase against the stars and the Milky Way.
+<div class="shots">
+<figure><img src="/press/living-earth-iphone-storms.jpg" width="600" height="1224" loading="lazy" alt="Super Typhoon Choi-wan on iPhone, with its category, heading and winds"><figcaption>Tropical storms worldwide, with each storm's category, wind speed and direction of travel.</figcaption></figure>
+<figure><img src="/press/living-earth-iphone-cities.jpg" width="600" height="1224" loading="lazy" alt="The time and weather in six cities over the night side of the globe, on iPhone"><figcaption>The time and weather in each of your cities at a glance.</figcaption></figure>
+<figure><img src="/press/living-earth-iphone-forecast.jpg" width="600" height="1224" loading="lazy" alt="The forecast for New York City on iPhone, with hourly temperatures and the 10-day forecast"><figcaption>Hourly and 10-day forecasts show temperatures and chances of rain.</figcaption></figure>
+<figure><img src="/press/living-earth-iphone-eclipse.jpg" width="600" height="1224" loading="lazy" alt="A total solar eclipse in progress on iPhone, the Moon's shadow over the Red Sea"><figcaption>The Moon's shadow crosses the Earth, and a notification arrives when a total eclipse begins.</figcaption></figure>
+</div>
 
 ## What people say
 
