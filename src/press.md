@@ -65,7 +65,7 @@ Living Earth 4.50 is a free update for existing users, and the first version for
 <div class="shots">
 <figure><img src="/press/living-earth-iphone-storms.jpg" width="600" height="1224" loading="lazy" alt="Super Typhoon Choi-wan on iPhone, with its category, heading and winds"><figcaption>Tropical storms worldwide, with each storm's category, wind speed and direction of travel.</figcaption></figure>
 <figure><img src="/press/living-earth-iphone-cities.jpg" width="600" height="1224" loading="lazy" alt="The time and weather in six cities over the night side of the globe, on iPhone"><figcaption>The time and weather in each of your cities at a glance.</figcaption></figure>
-<figure><img src="/press/living-earth-iphone-forecast.jpg" width="600" height="1224" loading="lazy" alt="The forecast for New York City on iPhone, with hourly temperatures and the 10-day forecast"><figcaption>Hourly and 10-day forecasts show temperatures and chances of rain.</figcaption></figure>
+<figure><img src="/press/living-earth-iphone-maps.jpg" width="600" height="1224" loading="lazy" alt="A temperature map of North America on iPhone, with the weather in San Francisco and New York City"><figcaption>Temperature, humidity and wind, mapped across the whole planet.</figcaption></figure>
 <figure><img src="/press/living-earth-iphone-eclipse.jpg" width="600" height="1224" loading="lazy" alt="A total solar eclipse in progress on iPhone, the Moon's shadow over the Red Sea"><figcaption>The Moon's shadow crosses the Earth, and a notification arrives when a total eclipse begins.</figcaption></figure>
 </div>
 
