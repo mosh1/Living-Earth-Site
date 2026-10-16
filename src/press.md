@@ -83,9 +83,9 @@ Living Earth 4.50 is a free update for existing users, and the first version for
 >
 > WIRED Insider
 
-## Trying the app and getting in touch
+## Contact
 
-We're happy to send a TestFlight invite or a promo code, set up an interview, or answer questions. Write to [contact@radiantlabs.io](mailto:contact@radiantlabs.io), or find us on X at [@livingearthapp](https://x.com/livingearthapp).
+For a TestFlight invite, a promo code, an interview or questions about Living Earth, email me at [contact@radiantlabs.io](mailto:contact@radiantlabs.io). You can also reach me on X at [@livingearthapp](https://x.com/livingearthapp).
 
 ## In the ZIP
 
