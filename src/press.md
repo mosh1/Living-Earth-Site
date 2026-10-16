@@ -39,6 +39,10 @@ It doubles as a world clock and weather app, with the time and weather in each s
 
 Living Earth also tracks solar and lunar eclipses and includes a Wake Alarm with repeat days, snooze and a choice of gentle tones. A single $5.99 purchase in the US covers iPhone and iPad, with no subscription, ads or tracking.
 
+## About the developer
+
+Living Earth is the work of independent developer Moshen Chan of Radiantlabs in San Francisco. A coder by day and an amateur astronomer and astrophotographer by night, Moshen keeps building and refining the app for the love of space and weather.
+
 ## What's new in 4.50
 
 Living Earth 4.50 is a free update for existing users, and the first version for iPhone Duo.
@@ -78,10 +82,6 @@ Living Earth 4.50 is a free update for existing users, and the first version for
 > "A stunning app that shows the Earth in real time, based on global weather reports."
 >
 > WIRED Insider
-
-## About the developer
-
-Living Earth is the work of independent developer Moshen Chan of Radiantlabs in San Francisco. A coder by day and an amateur astronomer and astrophotographer by night, Moshen keeps building and refining the app for the love of space and weather.
 
 ## Trying the app and getting in touch
 
